@@ -5,17 +5,41 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:HorasExtras"
     xmlns:Views="clr-namespace:HorasExtras.Views"
-    Shell.FlyoutBehavior="Flyout"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.TabBarForegroundColor="White"
+    Shell.TabBarUnselectedColor="lightgreen"
+    Shell.TabBarTitleColor="White"
+    Shell.TabBarBackgroundColor="green"
+    Shell.UnselectedColor="WhiteSmoke"
     Title="HorasExtras">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
-    <ShellContent
-        Title="Configuración"
-        ContentTemplate="{DataTemplate Views:Configuration}"
-        Route="Configuration"
-         />
+    <TabBar
+        
+        >
+        <ShellContent
+            
+            Title="Proyectos"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="MainPage"
+            Icon="workpeople.png"/>
+        <ShellContent
+            Title="Exportar"
+            ContentTemplate="{DataTemplate Views:Export}"
+            Route="MainPage"
+            Icon="pdf.png"/>
+        <ShellContent
+            Title="Empleados"
+            ContentTemplate="{DataTemplate Views:Employees}"
+            Route="MainPage"
+            Icon="employess.png"/>
+        <ShellContent
+            Title="Configuración"
+            ContentTemplate="{DataTemplate Views:Configuration}"
+            Route="Configuration"
+            Icon="settings.png"/>
+    </TabBar>
+
+
+
 
 </Shell>

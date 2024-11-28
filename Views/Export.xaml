@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModels="clr-namespace:HorasExtras.ViewModels"
+             xmlns:Models="clr-namespace:HorasExtras.Models"
+             x:Class="HorasExtras.Views.Export"
+             Padding="2"
+             Title="Exportar Horas">
+    <ContentPage.BindingContext>
+        <ViewModels:Export/>
+    </ContentPage.BindingContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.4*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackLayout>
+            <Label
+                Margin="5"
+                HorizontalTextAlignment="Center">
+                Seleccione los proyectos que desea exportar
+            </Label>
+        </StackLayout>
+        <ScrollView Grid.Row="1"
+                    BackgroundColor="LightCoral"
+                    VerticalOptions="StartAndExpand">
+
+        </ScrollView>
+        <HorizontalStackLayout Grid.Row="2"
+                               HorizontalOptions="CenterAndExpand">
+            <Button Text="Generar Reporte"
+                    HorizontalOptions="Center"
+                    Background="Blue"
+                    TextColor="White"/>
+        </HorizontalStackLayout>
+    </Grid>
+</ContentPage>
