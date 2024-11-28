@@ -28,7 +28,6 @@
             </Label>
         </StackLayout>
         <ScrollView Grid.Row="1"
-                    BackgroundColor="LightCoral"
                     VerticalOptions="StartAndExpand">
             <Border Background="AliceBlue"
                     HeightRequest="40"
@@ -64,7 +63,15 @@
                 Padding="2"
                 CornerRadius="25"
                 Margin="10"
-                Command="{Binding IAddProject}"/>
+                Command="{Binding IAddProject}">
+                <!-- Agregar sombra -->
+                <ImageButton.Shadow>
+                    <Shadow Brush="Gray"
+                            Offset="5,5"
+                            Radius="10"
+                            Opacity="0.5"/>
+                </ImageButton.Shadow>
+            </ImageButton>
         </HorizontalStackLayout>
     </Grid>
 </ContentPage>

@@ -4,7 +4,7 @@
              xmlns:ViewModels="clr-namespace:HorasExtras.ViewModels"
              xmlns:Models="clr-namespace:HorasExtras.Models"
              x:Class="HorasExtras.Views.Export"
-             Padding="2"
+             Padding="2,5,2,2"
              Title="Exportar Horas">
     <ContentPage.BindingContext>
         <ViewModels:Export/>

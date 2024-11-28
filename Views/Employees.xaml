@@ -4,6 +4,7 @@
              xmlns:ViewModels="clr-namespace:HorasExtras.ViewModels"
              xmlns:Models="clr-namespace:HorasExtras.Models"
              x:Class="HorasExtras.Views.Employees"
+             Padding="2,5,2,2"
              Title="Empleados">
     <ContentPage.BindingContext>
         <ViewModels:Employees/>
@@ -56,12 +57,23 @@
             AbsoluteLayout.LayoutFlags="PositionProportional"
             VerticalOptions="End"
             HorizontalOptions="End"
-            Background="Blue"
+            BackgroundColor="Blue"
             HeightRequest="50"
             WidthRequest="50"
             Padding="2"
             CornerRadius="25"
             Margin="10"
-            Command="{Binding IAddProject}"/>
+            Command="{Binding IAddEmployee}">
+
+            <!-- Agregar sombra -->
+            <Button.Shadow>
+                <Shadow Brush="Gray"
+                        Offset="5,5"
+                        Radius="10"
+                        Opacity="0.5"/>
+            </Button.Shadow>
+
+        </Button>
+
     </AbsoluteLayout>
 </ContentPage>
