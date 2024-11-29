@@ -91,6 +91,7 @@ public class MainPageVM : INotifyPropertyChangedAbs
     {
         try
         {
+            SharedData.SelectedProject = project;
             await Shell.Current.GoToAsync("ViewProject");
         }
         catch (System.Exception er)

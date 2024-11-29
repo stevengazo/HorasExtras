@@ -8,7 +8,7 @@ public partial class AppShell : Shell
 	{
 		InitializeComponent();
 
-		Routing.RegisterRoute("ViewProject",  typeof(ViewProject));
-      
+		Routing.RegisterRoute("ViewProject", typeof(ViewProject));
+		Routing.RegisterRoute("AddExtra", typeof(AddExtra));
 	}
 }

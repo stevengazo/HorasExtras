@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModels="clr-namespace:HorasExtras.ViewModels"
+             xmlns:Models="clr-namespace:HorasExtras.Models"
+             x:Class="HorasExtras.Views.AddExtra"
+             Title="Agregar Extra">
+    <ContentPage.BindingContext>
+        <ViewModels:AddExtraVM/>
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout>
+        <Grid Padding="20"
+            HorizontalOptions="CenterAndExpand"
+            ColumnSpacing="30"
+                RowDefinitions="Auto, Auto, Auto, Auto"
+                ColumnDefinitions="Auto, Auto">
+            <!-- Fila 0 -->
+            <Label
+                Text="Persona"
+                VerticalOptions="Center"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                Grid.Row="0"
+                Grid.Column="0"/>
+
+            <Picker
+                Grid.Row="0"
+                Grid.Column="1"
+                VerticalOptions="Center"
+                Title="Seleccione"
+                BackgroundColor="{AppThemeBinding Light=White, Dark=Gray}"
+                Margin="2"
+                TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                ItemsSource="{Binding employees}"/>
+
+            <!-- Fila 1 -->
+            <Label
+                Text="Fecha"
+                VerticalOptions="Center"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                Grid.Row="1"
+                Grid.Column="0"/>
+
+            <DatePicker
+                WidthRequest="120"
+                Grid.Row="1"
+                Grid.Column="1"/>
+
+            <!-- Fila 2 -->
+            <Label
+                Text="Hora Entrada"
+                FontAttributes="Bold"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Grid.Row="2"
+                Grid.Column="0"/>
+
+            <TimePicker
+                WidthRequest="120"
+                Grid.Row="2"
+                Grid.Column="1"/>
+
+            <!-- Fila 3 -->
+            <Label
+                Text="Hora Salida"
+                FontAttributes="Bold"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Grid.Row="3"
+                Grid.Column="0"/>
+
+            <TimePicker
+                WidthRequest="120"
+                Grid.Row="3"
+                Grid.Column="1"/>
+        </Grid>
+
+        <Button Text="close"
+                HeightRequest="50"
+                Command="{Binding Close}"/>
+    </VerticalStackLayout>
+
+</ContentPage>
