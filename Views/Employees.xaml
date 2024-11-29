@@ -17,37 +17,49 @@
             AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
             AbsoluteLayout.LayoutFlags="All">
 
-            <Grid
-                Padding="5"
-                HeightRequest="60">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="50"/>
-                    <ColumnDefinition Width="50"/>
-                </Grid.ColumnDefinitions>
-                <Label
-                    Margin="5,0,0,0"
-                    HorizontalOptions="StartAndExpand"
-                    VerticalOptions="Center"
-                    FontSize="Body"
-                    Grid.Column="0">Empleado Información</Label>
-                <ImageButton
-                    WidthRequest="40"
-                    HeightRequest="40"
-                    Padding="2"
-                    CornerRadius="4"
-                    Grid.Column="1"
-                    Source="edit.png"
-                    Background="Green"/>
-                <ImageButton
-                    WidthRequest="40"
-                    HeightRequest="40"
-                    Padding="2"
-                    CornerRadius="4"
-                    Grid.Column="3"
-                    Source="delete.png"
-                    Background="red"/>
-            </Grid>
+            <CollectionView
+                ItemsSource="{Binding EmployeeList}"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="Start">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid
+                            Padding="5"
+                            HeightRequest="60">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="50"/>
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Margin="5,0,0,0"
+                                HorizontalOptions="StartAndExpand"
+                                VerticalOptions="Center"
+                                FontSize="Body"
+                                Text="{Binding EmployeeName}"
+                                Grid.Column="0" />
+                            <ImageButton
+                                WidthRequest="40"
+                                HeightRequest="40"
+                                Padding="2"
+                                CornerRadius="4"
+                                Grid.Column="1"
+                                Source="edit.png"
+                                Background="Green"/>
+                            <ImageButton
+                                WidthRequest="40"
+                                HeightRequest="40"
+                                Padding="2"
+                                CornerRadius="4"
+                                Grid.Column="3"
+                                Source="delete.png"
+                                Background="red"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
 
         </ScrollView>
         <!-- Botón en la esquina inferior derecha -->
