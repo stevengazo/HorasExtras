@@ -57,8 +57,7 @@ public class Employees : INotifyPropertyChangedAbs
             var EmployeeLastname2 = await Application.Current.MainPage.DisplayPromptAsync("Nuevo Empleado", "Indique el Segundo Apellido", "OK", "Cancelar");
 
             Employee newEmployee = new Employee()
-            {
-                EmployeeId = Guid.NewGuid().ToString(),
+            {         
                 EmployeeName = EmployeeName,
                 LastName = EmployeeLastname1,
                 SecondLastName = EmployeeLastname2

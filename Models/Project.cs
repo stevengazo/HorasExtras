@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HorasExtras.Models;
 
@@ -7,19 +8,20 @@ public class Project
 {
     [Key]
     [Required]
-    public string ProjectId { get; set; } = Guid.NewGuid().ToString();
-    public string? ProjectName { get; set;} 
-    public string? Type { get; set;}  
-
-    public Project(string Name, string Type )
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public string ProjectId { get; set; }
+    public string? ProjectName { get; set; }
+    public string? Type { get; set; }
+ public ICollection<Extras> ExtraExtras { get; set; }
+    public Project(string Name, string Type)
     {
-        this.ProjectId = Guid.NewGuid().ToString();
-        this.ProjectName = Name;    
+        
+        this.ProjectName = Name;
         this.Type = Type;
     }
     public Project()
     {
-        
-    }
 
+    }
+     
 }

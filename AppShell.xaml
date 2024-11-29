@@ -25,12 +25,12 @@
         <ShellContent
             Title="Exportar"
             ContentTemplate="{DataTemplate Views:Export}"
-            Route="MainPage"
+            Route="Exports"
             Icon="pdf.png"/>
         <ShellContent
             Title="Empleados"
             ContentTemplate="{DataTemplate Views:Employees}"
-            Route="MainPage"
+            Route="Employees"
             Icon="employess.png"/>
         <ShellContent
             Title="Configuración"

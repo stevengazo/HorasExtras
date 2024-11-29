@@ -1,6 +1,9 @@
 using System;
 using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.Input;
+using HorasExtras.Data;
 using HorasExtras.Models;
+using HorasExtras.Views;
 
 namespace HorasExtras.ViewModels;
 
@@ -27,13 +30,16 @@ public class MainPageVM : INotifyPropertyChangedAbs
         }
         private set { }
     }
-
+    public IAsyncRelayCommand<Project> IViewProject
+    {
+        get;
+        set;
+    }
     public MainPageVM()
     {
-
+        LoadProjectsAsync();
+        IViewProject = new AsyncRelayCommand<Project>(ViewProject);
     }
-
-
     private async Task AddProjectAsync()
     {
         try
@@ -44,8 +50,14 @@ public class MainPageVM : INotifyPropertyChangedAbs
             if (!string.IsNullOrEmpty(Name))
             {
                 Project newProject = new Project(Name, Type);
-
                 Projects.Add(newProject);
+                OrderProjectsAsync();
+                using (var db = new ProjectHoursContext())
+                {
+                    db.Projects.Add(newProject);
+                    db.SaveChanges();
+                }
+
             }
         }
         catch (System.Exception e)
@@ -53,5 +65,39 @@ public class MainPageVM : INotifyPropertyChangedAbs
             Console.WriteLine(e.Message);
             throw;
         }
+    }
+    private async Task LoadProjectsAsync()
+    {
+        using (var db = new ProjectHoursContext())
+        {
+            var projects = db.Projects.OrderBy(e => e.ProjectName).ToList();
+            foreach (var project in projects)
+            {
+                Projects.Add(project);
+            }
+        }
+    }
+    private async Task OrderProjectsAsync()
+    {
+        var pList = Projects.OrderBy(e => e.ProjectName).ToList();
+        Projects.Clear();
+        foreach (var project in pList)
+        {
+            Projects.Add(project);
+        }
+    }
+
+    private async Task ViewProject(Project project)
+    {
+        try
+        {
+            await Shell.Current.GoToAsync("ViewProject");
+        }
+        catch (System.Exception er)
+        {
+
+            throw;
+        }
+
     }
 }

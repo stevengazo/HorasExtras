@@ -9,10 +9,49 @@
     <ContentPage.BindingContext>
         <ViewModels:Configuration/>
     </ContentPage.BindingContext>
-    <VerticalStackLayout>
-        <Label
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center"
-            HorizontalOptions="Center"/>
-    </VerticalStackLayout>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0"
+               HorizontalOptions="Center"
+               FontSize="Title">Usuario</Label>
+        <VerticalStackLayout Grid.Row="1"
+                             Spacing="20">
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Label VerticalOptions="Center"
+                       FontAttributes="Bold">Usuario</Label>
+                <Entry WidthRequest="150"></Entry>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Label VerticalOptions="Center"
+                       FontAttributes="Bold">Correo</Label>
+                <Entry WidthRequest="150"></Entry>
+            </HorizontalStackLayout>
+            <Button Text="Guardar Datos"
+                    WidthRequest="200"/>
+        </VerticalStackLayout>
+        <Line Grid.Row="2"
+            HorizontalOptions="CenterAndExpand"
+              X1="0"
+              Y1="0"
+              X2="300"
+              Y2="0"
+              Stroke="Gray"></Line>
+        <Label Grid.Row="3"
+               HorizontalOptions="Center"
+               FontSize="Title">Opciones</Label>
+        <VerticalStackLayout Grid.Row="4"
+            Spacing="20"
+                             Padding="20">
+            <Label HorizontalOptions="Center">Borrar Proyectos y Registros de Extras</Label>
+            <Button Text="Borrar"
+                    Background="Red"
+                    WidthRequest="200"/>
+        </VerticalStackLayout>
+    </Grid>
 </ContentPage>

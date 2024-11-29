@@ -27,17 +27,34 @@
                 Se muestra la lista de proyectos existentes. Si debe registrar horas extras verifique que lo realice en el proyecto correspondiente. Cuando haya finalizado la semana exporte  la información.
             </Label>
         </StackLayout>
-        <ScrollView Grid.Row="1" VerticalOptions="StartAndExpand">
+        <ScrollView Grid.Row="1"
+                    VerticalOptions="StartAndExpand">
 
             <CollectionView
-                ItemsSource="{Binding Projects}"
-                >
+                ItemsSource="{Binding Projects}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Border Background="AliceBlue"
-                                HeightRequest="40"
-                                Margin="10,0,10,0">
+                        <Frame
+                            
+                            Margin="10,1,10,1"
+                            Padding="5"
+                            HeightRequest="50"
+                            BorderColor="LightGray"
+                            
+                            CornerRadius="5">
+                            <Frame.Shadow>
+                                <Shadow Brush="Gray"
+                                        Offset="5,5"
+                                        Radius="10"
+                                        Opacity="0.5"/>
+                            </Frame.Shadow>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer  
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ViewModels:MainPageVM}}, Path=IViewProject}"
+                                    CommandParameter="{Binding .}"/>
+                            </Frame.GestureRecognizers>
                             <Grid Margin="5"
+                                
                                   Padding="0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -47,14 +64,19 @@
                                         VerticalOptions="Center"
                                         HorizontalTextAlignment="Center"
                                         Text="{Binding ProjectName}"
-                                        FontSize="Medium"/>
+                                        FontSize="Medium"
+                                        FontAttributes="Bold"
+                                        
+                                        />
                                 <Label  Grid.Column="1"
                                         VerticalOptions="Center"
                                         HorizontalTextAlignment="Center"
                                         Text="{Binding Type}"
-                                        FontSize="Medium"/>
+                                        FontSize="Medium"
+                                        FontAttributes="Italic"
+                                        />
                             </Grid>
-                        </Border>
+                        </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
