@@ -13,7 +13,6 @@
         <!-- ScrollView con el contenido principal -->
         <ScrollView
             VerticalOptions="StartAndExpand"
-            BackgroundColor="Orange"
             AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
             AbsoluteLayout.LayoutFlags="All">
 
@@ -21,46 +20,56 @@
                 ItemsSource="{Binding EmployeeList}"
                 HorizontalOptions="FillAndExpand"
                 VerticalOptions="Start">
-
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid
-                            Padding="5"
-                            HeightRequest="60">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="50"/>
-                                <ColumnDefinition Width="50"/>
-                            </Grid.ColumnDefinitions>
-                            <Label
-                                Margin="5,0,0,0"
-                                HorizontalOptions="StartAndExpand"
-                                VerticalOptions="Center"
-                                FontSize="Body"
-                                Text="{Binding EmployeeName}"
-                                Grid.Column="0" />
-                            <ImageButton
-                                WidthRequest="40"
-                                HeightRequest="40"
-                                Padding="2"
-                                CornerRadius="4"
-                                Grid.Column="1"
-                                Source="edit.png"
-                                Background="Green"/>
-                            <ImageButton
-                                WidthRequest="40"
-                                HeightRequest="40"
-                                Padding="2"
-                                CornerRadius="4"
-                                Grid.Column="3"
-                                Source="delete.png"
-                                Background="red"/>
-                        </Grid>
+                        <Frame  
+                                Margin="0,2,0,2"
+                                Padding="5"
+                                HeightRequest="60"
+                                BorderColor="LightGray"
+                                CornerRadius="5"
+                                >
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="50"/>
+                                </Grid.ColumnDefinitions>
+                                <HorizontalStackLayout
+                                     Margin="10,0,0,0"
+                                     HorizontalOptions="StartAndExpand"
+                                     VerticalOptions="Center"
+                                     Grid.Column="0"
+                                     Spacing="4">
+                                    <Label FontSize="Body" Text="{Binding EmployeeName}"/>
+                                    <Label FontSize="Body" Text="{Binding LastName}"/>
+                                    <Label FontSize="Body" Text="{Binding SecondLastName}"/>
+                                </HorizontalStackLayout>
+                                <ImageButton
+                                     WidthRequest="40"
+                                     HeightRequest="40"
+                                     Padding="2"
+                                     CornerRadius="4"
+                                     Grid.Column="1"
+                                     Command="{Binding Source={RelativeSource AncestorType={x:Type ViewModels:Employees}}, Path=IEditEmployee}"
+                                     CommandParameter="{Binding .}"
+                                     Source="edit.png"
+                                     Background="Green"/>
+                                <ImageButton
+                                     WidthRequest="40"
+                                     HeightRequest="40"
+                                     Padding="2"
+                                     CornerRadius="4"
+                                     Grid.Column="3"
+                                     Command="{Binding Source={RelativeSource AncestorType={x:Type ViewModels:Employees}}, Path=IDeleteEmployee}"
+                                     CommandParameter="{Binding .}"
+                                     Source="delete.png"
+                                     Background="red"/>
+                            </Grid>
+                        </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-
             </CollectionView>
-
         </ScrollView>
         <!-- Botón en la esquina inferior derecha -->
         <Button
@@ -76,7 +85,6 @@
             CornerRadius="25"
             Margin="10"
             Command="{Binding IAddEmployee}">
-
             <!-- Agregar sombra -->
             <Button.Shadow>
                 <Shadow Brush="Gray"
@@ -84,8 +92,6 @@
                         Radius="10"
                         Opacity="0.5"/>
             </Button.Shadow>
-
         </Button>
-
     </AbsoluteLayout>
 </ContentPage>

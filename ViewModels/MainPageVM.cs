@@ -1,15 +1,29 @@
 using System;
+using System.Collections.ObjectModel;
+using HorasExtras.Models;
 
 namespace HorasExtras.ViewModels;
 
 public class MainPageVM : INotifyPropertyChangedAbs
 {
-
+    private ObservableCollection<Project> _projects = new();
+    public ObservableCollection<Project> Projects
+    {
+        get { return _projects; }
+        set
+        {
+            _projects = value;
+            if (_projects != value)
+            {
+                OnPropertyChanged(nameof(Projects));
+            }
+        }
+    }
     public Command IAddProject
     {
         get
         {
-            return new Command( async()=> await AddProject()  );
+            return new Command(async () => await AddProjectAsync());
         }
         private set { }
     }
@@ -20,17 +34,24 @@ public class MainPageVM : INotifyPropertyChangedAbs
     }
 
 
-    private async Task AddProject()
+    private async Task AddProjectAsync()
     {
         try
         {
-            var ProjectName = await Application.Current.MainPage.DisplayPromptAsync("Nuevo Proyecto", "Indique el nombre del proyecto", "OK", "Cancelar");
-            var ProyectType = await Application.Current.MainPage.DisplayPromptAsync("Nuevo Proyecto", "Indique el tipo de proyecto", "OK", "Cancelar");
+            string Name = await Application.Current.MainPage.DisplayPromptAsync("Nuevo Proyecto", "Indique el nombre", "OK", "Cancelar");
+            var typeOptions = new string[] { "Instalación", "Mantenimiento", "Otro" };
+            string Type = await Application.Current.MainPage.DisplayActionSheet("Selecciona una opción", "Cancelar", null, typeOptions);
+            if (!string.IsNullOrEmpty(Name))
+            {
+                Project newProject = new Project(Name, Type);
 
+                Projects.Add(newProject);
+            }
         }
-        catch (Exception ex)
+        catch (System.Exception e)
         {
-            await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
+            Console.WriteLine(e.Message);
+            throw;
         }
     }
 }

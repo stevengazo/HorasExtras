@@ -1,8 +1,8 @@
 using System;
+using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using HorasExtras.Data;
 using HorasExtras.Models;
-using SQLitePCL.lib;
 
 namespace HorasExtras.ViewModels;
 
@@ -10,13 +10,11 @@ public class Employees : INotifyPropertyChangedAbs
 {
     public Employees()
     {
-
+        IDeleteEmployee = new Command<Employee>(DeleteEmployee);
+        IEditEmployee = new AsyncRelayCommand<Employee>(EditEmployee);
+        LoadEmployees();
     }
-
-
-
     private ObservableCollection<Employee> _EmployeeList { get; set; } = new();
-
     public ObservableCollection<Employee> EmployeeList
     {
         get { return _EmployeeList; }
@@ -29,7 +27,6 @@ public class Employees : INotifyPropertyChangedAbs
             }
         }
     }
-
     public Command IAddEmployee
     {
         get
@@ -40,6 +37,16 @@ public class Employees : INotifyPropertyChangedAbs
         {
 
         }
+    }
+    public Command IDeleteEmployee
+    {
+        get;
+        private set;
+    }
+    public IAsyncRelayCommand<Employee> IEditEmployee
+    {
+        get;
+        set;
     }
     private async Task AddEmployeeAsync()
     {
@@ -58,7 +65,8 @@ public class Employees : INotifyPropertyChangedAbs
             };
             EmployeeList.Add(newEmployee);
 
-            using (var db = new  ProjectHoursContext()){
+            using (var db = new ProjectHoursContext())
+            {
                 db.Employees.Add(newEmployee);
                 db.SaveChanges();
             }
@@ -69,8 +77,63 @@ public class Employees : INotifyPropertyChangedAbs
             await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
         }
     }
+    private void DeleteEmployee(Employee employee)
+    {
+        using (var db = new ProjectHoursContext())
+        {
+            db.Employees.Remove(employee);
+            db.SaveChanges();
+        }
+        EmployeeList.Remove(employee);
+        OrderList();
 
-    private void OrderList()
+    }
+    private async Task EditEmployee(Employee employee)
+    {
+        try
+        {
+            var EmployeeName =await Application.Current.MainPage.DisplayPromptAsync("Nuevo Empleado", "Indique el nombre", "OK", "Cancelar");
+            var EmployeeLastname1 =await Application.Current.MainPage.DisplayPromptAsync("Nuevo Empleado", "Indique el Primer Apellido", "OK", "Cancelar");
+            var EmployeeLastname2 = await Application.Current.MainPage.DisplayPromptAsync("Nuevo Empleado", "Indique el Segundo Apellido", "OK", "Cancelar");
+
+            EmployeeList.Remove(employee);
+            // Validate the data
+            employee.EmployeeName = EmployeeName;
+            employee.LastName = EmployeeLastname1;
+            employee.SecondLastName = EmployeeLastname2;
+
+            using (var db = new ProjectHoursContext())
+            {
+                db.Employees.Update(employee);
+                db.SaveChanges();
+            }
+            Application.Current.MainPage.DisplayAlert("Atenci�n","Usuario Actualizado", "Ok");
+
+            EmployeeList.Remove(employee);
+            EmployeeList.Add(employee);
+            OrderList();
+
+        }
+        catch (Exception r)
+        {
+            Application.Current.MainPage.DisplayAlert("Error", r.Message, "Ok");
+            throw;
+        }
+    }
+    private async Task LoadEmployees()
+    {
+        using (var db = new ProjectHoursContext())
+        {
+            var emp = db.Employees.OrderBy(e => e.EmployeeName).ToList();
+            foreach (var item in emp)
+            {
+                EmployeeList.Add(item);
+            }
+        }
+    
+    
+    }
+    private async Task OrderList()
     {
         var list = EmployeeList.ToList();
         list.Sort((e1, e2) => e1.EmployeeName.CompareTo(e2.EmployeeName));

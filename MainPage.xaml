@@ -27,29 +27,37 @@
                 Se muestra la lista de proyectos existentes. Si debe registrar horas extras verifique que lo realice en el proyecto correspondiente. Cuando haya finalizado la semana exporte  la información.
             </Label>
         </StackLayout>
-        <ScrollView Grid.Row="1"
-                    VerticalOptions="StartAndExpand">
-            <Border Background="AliceBlue"
-                    HeightRequest="40"
-                    Margin="10,0,10,0">
-                <Grid Margin="5"
-                      Padding="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Label  Grid.Column="0"
-                            VerticalOptions="Center"
-                            HorizontalTextAlignment="Center"
-                            Text="Proyecto"
-                            FontSize="Medium"/>
-                    <Label  Grid.Column="1"
-                            VerticalOptions="Center"
-                            HorizontalTextAlignment="Center"
-                            Text="Proyecto"
-                            FontSize="Medium"/>
-                </Grid>
-            </Border>
+        <ScrollView Grid.Row="1" VerticalOptions="StartAndExpand">
+
+            <CollectionView
+                ItemsSource="{Binding Projects}"
+                >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="AliceBlue"
+                                HeightRequest="40"
+                                Margin="10,0,10,0">
+                            <Grid Margin="5"
+                                  Padding="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label  Grid.Column="0"
+                                        VerticalOptions="Center"
+                                        HorizontalTextAlignment="Center"
+                                        Text="{Binding ProjectName}"
+                                        FontSize="Medium"/>
+                                <Label  Grid.Column="1"
+                                        VerticalOptions="Center"
+                                        HorizontalTextAlignment="Center"
+                                        Text="{Binding Type}"
+                                        FontSize="Medium"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
         </ScrollView>
         <HorizontalStackLayout Grid.Row="2"
