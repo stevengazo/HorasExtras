@@ -18,15 +18,13 @@ public class PDFGenerate
                 PdfWriter writer = new PdfWriter(ms);
                 PdfDocument pdf = new PdfDocument(writer);
                 Document document = new Document(pdf);
-
                 Paragraph header = new Paragraph($"Reporte Horas Extras")
                                     .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
                                     .SetFontSize(20);
-                                    Paragraph DateInfo= new Paragraph($"Fecha de Generación {DateTime.Now.ToString()}").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER).SetFontSize(12);
-                            document.Add(DateInfo);
+                Paragraph DateInfo = new Paragraph($"Fecha de Generación {DateTime.Now.ToString()}").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER).SetFontSize(12);
                 document.Add(header);
+                document.Add(DateInfo);
                 addDataTable(document, extras);
-
                 document.Close();
                 return ms.ToArray();
             }
@@ -38,7 +36,6 @@ public class PDFGenerate
             throw;
         }
     }
-
     private void addDataTable(Document document, List<Extras> extrasList)
     {
         // Crear una tabla con 7 columnas
@@ -55,7 +52,7 @@ public class PDFGenerate
 
         for (int i = 0; i < extrasList.Count; i++)
         {
-            AddRow(table, $"{extrasList[i].Employee.EmployeeName} {extrasList[i].Employee.LastName}",extrasList[i].Project.ProjectName , extrasList[i].Day, extrasList[i].EntryHour, extrasList[i].ExitHour, extrasList[i].TotalDuration, extrasList[i].Notes);
+            AddRow(table, $"{extrasList[i].Employee.EmployeeName} {extrasList[i].Employee.LastName}", extrasList[i].Project.ProjectName, extrasList[i].Day, extrasList[i].EntryHour, extrasList[i].ExitHour, extrasList[i].TotalDuration, extrasList[i].Notes);
         }
         document.Add(table);
     }
