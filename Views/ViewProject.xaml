@@ -26,6 +26,7 @@
               <Label Grid.Row="0"
                      HorizontalTextAlignment="Center"
                      FontSize="Title"
+                     FontAttributes="Bold"
                      Margin="10">Datos del Proyecto</Label>
               <Grid Grid.Row="1"
                     Padding="10"
@@ -41,19 +42,23 @@
                      <Label Grid.Column="0"
                             Grid.Row="0"
                             HorizontalTextAlignment="Center"
+                            FontSize="Subtitle"
                             FontAttributes="Bold"
                             Text="Nombre del Proyecto"></Label>
                      <Label Grid.Column="1"
                             Grid.Row="0"
+                            FontSize="Subtitle"
                             HorizontalTextAlignment="Center"
                             Text="{Binding ProjectObj.ProjectName}"></Label>
                      <Label Grid.Column="0"
                             Grid.Row="1"
+                            FontSize="Subtitle"
                             FontAttributes="Bold"
                             HorizontalTextAlignment="Center"
                             Text="Tipo"></Label>
                      <Label Grid.Column="1"
                             Grid.Row="1"
+                            FontSize="Subtitle"
                             HorizontalTextAlignment="Center"
                             Text="{Binding ProjectObj.Type}"></Label>
               </Grid>
@@ -67,25 +72,47 @@
                             <ColumnDefinition Width="*"/>
                      </Grid.ColumnDefinitions>
                      <Label Grid.Column="0"
+                            FontSize="Subtitle"
                             HorizontalTextAlignment="Center"
                             FontAttributes="Bold"
                             Text="Empleado"/>
                      <Label Grid.Column="1"
+                            FontAttributes="Bold"
+                            FontSize="Subtitle"
                             HorizontalTextAlignment="Center"
                             Text="Dia"/>
                      <Label Grid.Column="2"
                             FontAttributes="Bold"
+                            FontSize="Subtitle"
                             HorizontalTextAlignment="Center"
                             Text="Entrada"/>
                      <Label Grid.Column="3"
+                            FontAttributes="Bold"
+                            FontSize="Subtitle"
                             HorizontalTextAlignment="Center"
                             Text="Salida"/>
                      <Label Grid.Column="4"
+                            FontAttributes="Bold"
+                            FontSize="Subtitle"
                             HorizontalTextAlignment="Center"
                             Text="Horas"/>
               </Grid>
-              <HorizontalStackLayout Grid.Row="2" HorizontalOptions="Center">
-                     <Button Text="Eliminar" HorizontalOptions="Center" HeightRequest="35" VerticalOptions="Center" WidthRequest="150" Background="Red" Command="{Binding  IDeleteProject}"></Button>
+              <HorizontalStackLayout Grid.Row="2"
+                                     HorizontalOptions="Center">
+                     <Button Text="Eliminar"
+                             HorizontalOptions="Center"
+                             HeightRequest="35"
+                             VerticalOptions="Center"
+                             WidthRequest="150"
+                             Background="Red"
+                             Command="{Binding  IDeleteProject}">
+                            <Button.Shadow>
+                                   <Shadow Brush="Gray"
+                                           Offset="5,5"
+                                           Radius="10"
+                                           Opacity="0.5"/>
+                            </Button.Shadow>
+                     </Button>
               </HorizontalStackLayout>
               <ScrollView Grid.Row="4"
                           VerticalOptions="StartAndExpand">
@@ -94,7 +121,15 @@
                                    <DataTemplate>
                                           <Frame HeightRequest="50"
                                                  Margin="5"
+                                                 HasShadow="True"
                                                  Padding="0">
+                                                 <Frame.Shadow>
+                                                        <Shadow Brush="Gray"
+                                                                Offset="5,5"
+                                                                Radius="10"
+                                                                Opacity="0.5"/>
+                                                 </Frame.Shadow>
+
                                                  <Grid
                                                         HorizontalOptions="FillAndExpand">
                                                         <Grid.ColumnDefinitions>
@@ -134,8 +169,20 @@
               </ScrollView>
               <Button Grid.Row="5"
                       Margin="10"
+                      Background="blue"
+                      WidthRequest="120"
+                      TextColor="White"
                       Command="{Binding IAddExtra}"
-                      Text="Agregar Extra"/>
+                      Text="Agregar Extra">
+
+                     <Button.Shadow>
+                            <Shadow Brush="Gray"
+                                    Offset="5,5"
+                                    Radius="10"
+                                    Opacity="0.5"/>
+                     </Button.Shadow>
+              </Button>
+
        </Grid>
 
 </ContentPage>

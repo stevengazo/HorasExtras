@@ -72,8 +72,8 @@
             </CollectionView>
         </ScrollView>
         <!-- Botón en la esquina inferior derecha -->
-        <Button
-            Text="Add"
+        <ImageButton
+        Source="add.png"
             AbsoluteLayout.LayoutBounds="1, 1, AutoSize, AutoSize"
             AbsoluteLayout.LayoutFlags="PositionProportional"
             VerticalOptions="End"
@@ -86,12 +86,12 @@
             Margin="10"
             Command="{Binding IAddEmployee}">
             <!-- Agregar sombra -->
-            <Button.Shadow>
+            <ImageButton.Shadow>
                 <Shadow Brush="Gray"
                         Offset="5,5"
                         Radius="10"
                         Opacity="0.5"/>
-            </Button.Shadow>
-        </Button>
+            </ImageButton.Shadow>
+        </ImageButton>
     </AbsoluteLayout>
 </ContentPage>

@@ -48,21 +48,45 @@
                                     Padding="5"
                                     Command="{Binding ISearch}"
                                     Background="Orange"
-                                    TextColor="White"/>
+                                    TextColor="White">
+
+                                   <Button.Shadow>
+                                          <Shadow Brush="Gray"
+                                                  Offset="5,5"
+                                                  Radius="10"
+                                                  Opacity="0.5"/>
+                                   </Button.Shadow>
+                            </Button>
                             <Button Text="Limpiar"
                                     HorizontalOptions="Center"
                                     WidthRequest="100"
                                     HeightRequest="30"
                                     Padding="5"
+                                    Command="{Binding IClean}"
                                     Background="Red"
-                                    TextColor="White"/>
+                                    TextColor="White">
+                                   <Button.Shadow>
+                                          <Shadow Brush="Gray"
+                                                  Offset="5,5"
+                                                  Radius="10"
+                                                  Opacity="0.5"/>
+                                   </Button.Shadow>
+                            </Button>
                             <Button Text="Descargar"
                                     HorizontalOptions="Center"
                                     WidthRequest="100"
                                     HeightRequest="30"
+                                    Command="{Binding IShare}"
                                     Padding="5"
                                     Background="Green"
-                                    TextColor="White"/>
+                                    TextColor="White">
+                                   <Button.Shadow>
+                                          <Shadow Brush="Gray"
+                                                  Offset="5,5"
+                                                  Radius="10"
+                                                  Opacity="0.5"/>
+                                   </Button.Shadow>
+                            </Button>
 
                      </HorizontalStackLayout>
               </StackLayout>
@@ -102,16 +126,15 @@
                             Text="Salida"></Label>
               </Grid>
               <ScrollView Grid.Row="3"
-                 
                           Padding="2"
                           VerticalOptions="StartAndExpand">
                      <CollectionView ItemsSource="{Binding ListExtras}">
                             <CollectionView.ItemTemplate>
                                    <DataTemplate>
                                           <Frame Margin="2">
-                                                 <Grid 
+                                                 <Grid
                                                         Padding="0"
-                                                         ColumnSpacing="10">
+                                                        ColumnSpacing="10">
                                                         <Grid.ColumnDefinitions>
                                                                <ColumnDefinition Width="*"/>
                                                                <ColumnDefinition Width="*"/>

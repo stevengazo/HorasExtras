@@ -30,6 +30,7 @@ public class MainPageVM : INotifyPropertyChangedAbs
         }
         private set { }
     }
+  public Command ILoadProjects { get; set; }
     public IAsyncRelayCommand<Project> IViewProject
     {
         get;
@@ -37,8 +38,9 @@ public class MainPageVM : INotifyPropertyChangedAbs
     }
     public MainPageVM()
     {
-        LoadProjectsAsync();
+      /// LoadProjectsAsync();
         IViewProject = new AsyncRelayCommand<Project>(ViewProject);
+        ILoadProjects = new Command( async () => await LoadProjectsAsync());
     }
     private async Task AddProjectAsync()
     {
@@ -68,6 +70,7 @@ public class MainPageVM : INotifyPropertyChangedAbs
     }
     private async Task LoadProjectsAsync()
     {
+        Projects.Clear();
         using (var db = new ProjectHoursContext())
         {
             var projects = db.Projects.OrderBy(e => e.ProjectName).ToList();

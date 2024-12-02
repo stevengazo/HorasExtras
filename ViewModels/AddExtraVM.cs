@@ -85,7 +85,8 @@ public class AddExtraVM : INotifyPropertyChangedAbs
                             ExitHour = Extra.ExitHour,
                             Day = Extra.Day,
                             TotalDuration = Extra.TotalDuration,
-                            ProjectId = Extra.ProjectId
+                            ProjectId = Extra.ProjectId,
+                            Notes = Extra.Notes,
                         };
                         Extra = tmpExtra;
                         EmployeeName = "";

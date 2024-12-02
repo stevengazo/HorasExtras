@@ -119,6 +119,7 @@ public class ViewProjectVM : INotifyPropertyChangedAbs
     {
         try
         {
+            this.Extras.Clear();
             using (var db = new ProjectHoursContext())
             {
                 var Ext = db.Extras.Include(e => e.Employee).Where(e => e.ProjectId == SharedData.SelectedProject.ProjectId).ToList();

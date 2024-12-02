@@ -2,6 +2,7 @@ using System;
 using System.Collections.ObjectModel;
 using HorasExtras.Data;
 using HorasExtras.Models;
+using iText.Layout.Element;
 using Microsoft.EntityFrameworkCore;
 using SQLitePCL;
 
@@ -62,10 +63,12 @@ public class Export : INotifyPropertyChangedAbs
 
     public Export()
     {
-        ISearch = new Command( async()=> SearchExtrasAsync());
-
+        ISearch = new Command(async () => SearchExtrasAsync());
+        IShare = new Command(async () => DownloadReport());
+        IClean = new Command(async () => Clean());
     }
-
+    public Command IClean { get; set; }
+    public Command IShare { get; set; }
     public Command ISearch { get; set; }
     private async Task SearchExtrasAsync()
     {
@@ -88,4 +91,45 @@ public class Export : INotifyPropertyChangedAbs
         }
     }
 
+    private async Task Clean()
+    {
+        InitialDate = DateTime.Today;
+        FinalDate = DateTime.Today;
+        ListExtras.Clear();
+    }
+    private async Task DownloadReport()
+    {
+        try
+        {
+            if (ListExtras.Count > 0)
+            {
+                var BuilderPDF = new Utilities.PDFGenerate();
+                var DocPDF = await BuilderPDF.GenerateReport(ListExtras.ToList());
+                var filePath = Path.Combine(FileSystem.CacheDirectory, $"Reporte Extras {DateTime.Now:yy-MM-dd hh-mm-ss}.pdf");
+                File.WriteAllBytes(filePath, DocPDF);
+                await ShareFile(filePath);
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+    }
+    private async Task ShareFile(string filePath)
+    {
+        try
+        {
+            // Compartir el archivo PDF usando el servicio de MAUI
+            await Share.RequestAsync(new ShareFileRequest
+            {
+                Title = "Compartir Reporte de Entrada y Salida",
+                File = new ShareFile(filePath) // Usar "File" en lugar de "Files"
+            });
+        }
+        catch (Exception ex)
+        {
+            // Manejo de errores en caso de que no se pueda compartir el archivo
+            await Application.Current.MainPage.DisplayAlert("Error", $"No se pudo compartir el archivo: {ex.Message}", "OK");
+        }
+    }
 }

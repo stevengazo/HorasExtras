@@ -13,6 +13,7 @@ public class Extras
     public TimeSpan EntryHour { get; set; }
     public TimeSpan ExitHour { get; set; }
     public TimeSpan TotalDuration { get; set; }
+    public string? Notes { get; set; }
 
     
     public int EmployeeId { get; set; } 
