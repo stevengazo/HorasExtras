@@ -12,10 +12,10 @@ public class Project
     public string ProjectId { get; set; }
     public string? ProjectName { get; set; }
     public string? Type { get; set; }
- public ICollection<Extras> ExtraExtras { get; set; }
+    public ICollection<Extras> ExtraExtras { get; set; }
     public Project(string Name, string Type)
     {
-        
+
         this.ProjectName = Name;
         this.Type = Type;
     }
@@ -23,5 +23,5 @@ public class Project
     {
 
     }
-     
+
 }

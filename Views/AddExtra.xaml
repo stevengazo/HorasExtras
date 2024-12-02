@@ -11,10 +11,10 @@
 
     <VerticalStackLayout>
         <Grid Padding="20"
-            HorizontalOptions="CenterAndExpand"
-            ColumnSpacing="30"
-                RowDefinitions="Auto, Auto, Auto, Auto"
-                ColumnDefinitions="Auto, Auto">
+              HorizontalOptions="CenterAndExpand"
+              ColumnSpacing="30"
+              RowDefinitions="Auto, Auto, Auto, Auto"
+              ColumnDefinitions="Auto, Auto">
             <!-- Fila 0 -->
             <Label
                 Text="Persona"
@@ -31,6 +31,7 @@
                 Title="Seleccione"
                 BackgroundColor="{AppThemeBinding Light=White, Dark=Gray}"
                 Margin="2"
+                SelectedItem="{Binding EmployeeName}"
                 TextColor="{AppThemeBinding Light=Black, Dark=White}"
                 ItemsSource="{Binding employees}"/>
 
@@ -46,6 +47,7 @@
             <DatePicker
                 WidthRequest="120"
                 Grid.Row="1"
+                Date="{Binding Extra.Day}"
                 Grid.Column="1"/>
 
             <!-- Fila 2 -->
@@ -60,7 +62,9 @@
             <TimePicker
                 WidthRequest="120"
                 Grid.Row="2"
-                Grid.Column="1"/>
+                Grid.Column="1"
+                Time="{Binding Extra.EntryHour}"
+            />
 
             <!-- Fila 3 -->
             <Label
@@ -74,12 +78,17 @@
             <TimePicker
                 WidthRequest="120"
                 Grid.Row="3"
-                Grid.Column="1"/>
+                Grid.Column="1"
+                Time="{Binding Extra.ExitHour}"
+                />
         </Grid>
 
-        <Button Text="close"
+        <Button Text="Agregar Extra"
+                Background="Green"
+                TextColor="White"
+                WidthRequest="120"
                 HeightRequest="50"
-                Command="{Binding Close}"/>
+                Command="{Binding IAddExtra}"/>
     </VerticalStackLayout>
 
 </ContentPage>

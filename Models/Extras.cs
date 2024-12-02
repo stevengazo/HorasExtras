@@ -12,6 +12,7 @@ public class Extras
     public DateTime Day { get; set; }
     public TimeSpan EntryHour { get; set; }
     public TimeSpan ExitHour { get; set; }
+    public TimeSpan TotalDuration { get; set; }
 
     
     public int EmployeeId { get; set; } 
