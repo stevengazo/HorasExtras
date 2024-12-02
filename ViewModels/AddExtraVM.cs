@@ -57,6 +57,7 @@ public class AddExtraVM : INotifyPropertyChangedAbs
     public Command Close { get; }
     private async Task AddExtra()
     {
+
         try
         {
             if (EmployeeName != null)
@@ -72,7 +73,24 @@ public class AddExtraVM : INotifyPropertyChangedAbs
                     Extra.EmployeeId = employee != null ? employee.EmployeeId : 0;
                     db.Extras.Add(Extra);
                     db.SaveChanges();
-                    ClosePage();
+                    var answer = await Application.Current.MainPage.DisplayAlert("Confirmación", "¿Deseas agregar otro registro con la misma información", "Sí", "No");
+                    if (!answer)
+                    {
+                        ClosePage();
+                    }
+                    else
+                    {
+                        var tmpExtra = new Extras(){
+                            EntryHour = Extra.EntryHour,
+                            ExitHour = Extra.ExitHour,
+                            Day = Extra.Day,
+                            TotalDuration = Extra.TotalDuration,
+                            ProjectId = Extra.ProjectId
+                        };
+                        Extra = tmpExtra;
+                        EmployeeName = "";
+                        Application.Current.MainPage.DisplayAlert("información", "Seleccione el siguiente empleado", "OK");
+                    }
                 }
             }
         }

@@ -52,15 +52,15 @@ public class Employees : INotifyPropertyChangedAbs
     {
         try
         {
-            var EmployeeName = await Application.Current.MainPage.DisplayPromptAsync("Nuevo Empleado", "Indique el nombre", "OK", "Cancelar");
-            var EmployeeLastname1 = await Application.Current.MainPage.DisplayPromptAsync("Nuevo Empleado", "Indique el Primer Apellido", "OK", "Cancelar");
-            var EmployeeLastname2 = await Application.Current.MainPage.DisplayPromptAsync("Nuevo Empleado", "Indique el Segundo Apellido", "OK", "Cancelar");
+            var EmployeeName = await Application.Current.MainPage.DisplayPromptAsync("Nuevo Empleado", "Indique el nombre", "OK", "Cancelar", "Primer Nombre", 12, Keyboard.Text);
+            var EmployeeLastname1 = await Application.Current.MainPage.DisplayPromptAsync("Nuevo Empleado", "Indique el Primer Apellido", "OK", "Cancelar", "Primer Apellido", 15, Keyboard.Text);
+            var EmployeeLastname2 = await Application.Current.MainPage.DisplayPromptAsync("Nuevo Empleado", "Indique el Segundo Apellido", "OK", "Cancelar", "Segundo Apellido", 15, Keyboard.Text);
 
             Employee newEmployee = new Employee()
-            {         
-                EmployeeName = EmployeeName,
-                LastName = EmployeeLastname1,
-                SecondLastName = EmployeeLastname2
+            {
+                EmployeeName = EmployeeName.Trim(),
+                LastName = EmployeeLastname1.Trim(),
+                SecondLastName = EmployeeLastname2.Trim()
             };
             EmployeeList.Add(newEmployee);
 
@@ -80,8 +80,17 @@ public class Employees : INotifyPropertyChangedAbs
     {
         using (var db = new ProjectHoursContext())
         {
-            db.Employees.Remove(employee);
-            db.SaveChanges();
+            var depende = db.Extras.Where(x => x.EmployeeId == employee.EmployeeId).Any();
+            if (depende)
+            {
+                Application.Current.MainPage.DisplayAlert("Error", "El empleado tiene horas registradas", "ok");
+            }
+            else
+            {
+                db.Employees.Remove(employee);
+                db.SaveChanges();
+            }
+
         }
         EmployeeList.Remove(employee);
         OrderList();
@@ -91,8 +100,10 @@ public class Employees : INotifyPropertyChangedAbs
     {
         try
         {
-            var EmployeeName =await Application.Current.MainPage.DisplayPromptAsync("Nuevo Empleado", "Indique el nombre", "OK", "Cancelar");
-            var EmployeeLastname1 =await Application.Current.MainPage.DisplayPromptAsync("Nuevo Empleado", "Indique el Primer Apellido", "OK", "Cancelar");
+
+
+            var EmployeeName = await Application.Current.MainPage.DisplayPromptAsync("Nuevo Empleado", "Indique el nombre", "OK", "Cancelar");
+            var EmployeeLastname1 = await Application.Current.MainPage.DisplayPromptAsync("Nuevo Empleado", "Indique el Primer Apellido", "OK", "Cancelar");
             var EmployeeLastname2 = await Application.Current.MainPage.DisplayPromptAsync("Nuevo Empleado", "Indique el Segundo Apellido", "OK", "Cancelar");
 
             EmployeeList.Remove(employee);
@@ -106,7 +117,7 @@ public class Employees : INotifyPropertyChangedAbs
                 db.Employees.Update(employee);
                 db.SaveChanges();
             }
-            Application.Current.MainPage.DisplayAlert("Atenci�n","Usuario Actualizado", "Ok");
+            Application.Current.MainPage.DisplayAlert("Atención", "Usuario Actualizado", "Ok");
 
             EmployeeList.Remove(employee);
             EmployeeList.Add(employee);
@@ -129,8 +140,8 @@ public class Employees : INotifyPropertyChangedAbs
                 EmployeeList.Add(item);
             }
         }
-    
-    
+
+
     }
     private async Task OrderList()
     {

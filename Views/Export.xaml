@@ -6,133 +6,142 @@
              x:Class="HorasExtras.Views.Export"
              Padding="2,5,2,2"
              Title="Exportar Horas">
-    <ContentPage.BindingContext>
-        <ViewModels:Export/>
-    </ContentPage.BindingContext>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <StackLayout>
-            <Label
-                Margin="5"
-                HorizontalTextAlignment="Center">
-                Seleccione el rango de fechas para el reporte
-            </Label>
-            <HorizontalStackLayout
-                HorizontalOptions="CenterAndExpand"
-                Spacing="20">
-                <Label Text="Inicio"
-                       VerticalOptions="Center"
-                       FontAttributes="Bold"
-                       Margin="5,0,5,0"/>
-                <DatePicker WidthRequest="100"/>
-                <Label Text="Final"
-                       VerticalOptions="Center"
-                       FontAttributes="Bold"
-                       Margin="5,0,5,0"/>
-                <DatePicker WidthRequest="100"/>
-            </HorizontalStackLayout>
-            <HorizontalStackLayout
-                HorizontalOptions="CenterAndExpand"
-                Spacing="10">
-                <Button Text="Generar Reporte"
-                        HorizontalOptions="Center"
-                        WidthRequest="100"
-                        HeightRequest="30"
-                        Padding="5"
-                        Background="Orange"
-                        TextColor="White"/>
-                <Button Text="Limpiar"
-                        HorizontalOptions="Center"
-                        WidthRequest="100"
-                        HeightRequest="30"
-                        Padding="5"
-                        Background="Red"
-                        TextColor="White"/>
-                <Button Text="Descargar"
-                        HorizontalOptions="Center"
-                        WidthRequest="100"
-                        HeightRequest="30"
-                        Padding="5"
-                        Background="Green"
-                        TextColor="White"/>
+       <ContentPage.BindingContext>
+              <ViewModels:Export/>
+       </ContentPage.BindingContext>
+       <Grid>
+              <Grid.RowDefinitions>
+                     <RowDefinition Height="auto"/>
+                     <RowDefinition Height="auto"/>
+                     <RowDefinition Height="auto"/>
+                     <RowDefinition Height="*"/>
+              </Grid.RowDefinitions>
+              <StackLayout>
+                     <Label
+                            Margin="5"
+                            HorizontalTextAlignment="Center">
+                            Seleccione el rango de fechas para el reporte
+                     </Label>
+                     <HorizontalStackLayout
+                            HorizontalOptions="CenterAndExpand"
+                            Spacing="20">
+                            <Label Text="Inicio"
+                                   VerticalOptions="Center"
+                                   FontAttributes="Bold"
+                                   Margin="5,0,5,0"/>
+                            <DatePicker WidthRequest="100"
+                                        Date="{Binding InitialDate}"/>
+                            <Label Text="Final"
+                                   VerticalOptions="Center"
+                                   FontAttributes="Bold"
+                                   Margin="5,0,5,0"/>
+                            <DatePicker WidthRequest="100"
+                                        Date="{Binding FinalDate}"/>
+                     </HorizontalStackLayout>
+                     <HorizontalStackLayout
+                            HorizontalOptions="CenterAndExpand"
+                            Spacing="10">
+                            <Button Text="Generar Reporte"
+                                    HorizontalOptions="Center"
+                                    WidthRequest="100"
+                                    HeightRequest="30"
+                                    Padding="5"
+                                    Command="{Binding ISearch}"
+                                    Background="Orange"
+                                    TextColor="White"/>
+                            <Button Text="Limpiar"
+                                    HorizontalOptions="Center"
+                                    WidthRequest="100"
+                                    HeightRequest="30"
+                                    Padding="5"
+                                    Background="Red"
+                                    TextColor="White"/>
+                            <Button Text="Descargar"
+                                    HorizontalOptions="Center"
+                                    WidthRequest="100"
+                                    HeightRequest="30"
+                                    Padding="5"
+                                    Background="Green"
+                                    TextColor="White"/>
 
-            </HorizontalStackLayout>
-        </StackLayout>
-        <Label Grid.Row="1"
-               HorizontalOptions="CenterAndExpand"
-               FontSize="Title">Reporte</Label>
-        <Grid  Grid.Row="2"
-               Margin="0,10,0,0"
-               HorizontalOptions="FillAndExpand"
-               ColumnSpacing="10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0"
-                   FontAttributes="Bold"
-                   HorizontalOptions="Center"
-                   Text="Persona"></Label>
-            <Label Grid.Column="1"
-                   HorizontalOptions="Center"
-                   FontAttributes="Bold"
-                   Text="Fecha"></Label>
-            <Label Grid.Column="2"
-                   FontAttributes="Bold"
-                   HorizontalOptions="Center"
-                   Text="Proyecto"></Label>
-            <Label Grid.Column="3"
-                   FontAttributes="Bold"
-                   HorizontalOptions="Center"
-                   Text="Entrada"></Label>
-            <Label Grid.Column="4"
-                   FontAttributes="Bold"
-                   HorizontalOptions="Center"
-                   Text="Salida"></Label>
-        </Grid>
-        <ScrollView Grid.Row="3"
-                    BackgroundColor="LightCoral"
-                    Padding="5"
-                    VerticalOptions="StartAndExpand">
+                     </HorizontalStackLayout>
+              </StackLayout>
+              <Label Grid.Row="1"
+                     HorizontalOptions="CenterAndExpand"
+                     FontSize="Title">Reporte</Label>
+              <Grid  Grid.Row="2"
+                     Margin="0,10,0,0"
+                     HorizontalOptions="FillAndExpand"
+                     ColumnSpacing="10">
+                     <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                     </Grid.ColumnDefinitions>
+                     <Label Grid.Column="0"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            Text="Persona"></Label>
+                     <Label Grid.Column="1"
+                            HorizontalOptions="Center"
+                            FontAttributes="Bold"
+                            Text="Fecha"></Label>
+                     <Label Grid.Column="2"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            Text="Proyecto"></Label>
+                     <Label Grid.Column="3"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            Text="Entrada"></Label>
+                     <Label Grid.Column="4"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            Text="Salida"></Label>
+              </Grid>
+              <ScrollView Grid.Row="3"
+                 
+                          Padding="2"
+                          VerticalOptions="StartAndExpand">
+                     <CollectionView ItemsSource="{Binding ListExtras}">
+                            <CollectionView.ItemTemplate>
+                                   <DataTemplate>
+                                          <Frame Margin="2">
+                                                 <Grid 
+                                                        Padding="0"
+                                                         ColumnSpacing="10">
+                                                        <Grid.ColumnDefinitions>
+                                                               <ColumnDefinition Width="*"/>
+                                                               <ColumnDefinition Width="*"/>
+                                                               <ColumnDefinition Width="*"/>
+                                                               <ColumnDefinition Width="*"/>
+                                                               <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Label Grid.Column="0"
+                                                               HorizontalOptions="Center"
+                                                               Text="{Binding Employee.EmployeeName}"></Label>
+                                                        <Label Grid.Column="1"
+                                                               HorizontalOptions="Center"
+                                                               FontSize="Small"
+                                                               Text="{Binding Day, StringFormat='{}{0:ddd dd MMM}'}"></Label>
+                                                        <Label Grid.Column="2"
+                                                               HorizontalOptions="Center"
+                                                               Text="{Binding Project.ProjectName}"></Label>
+                                                        <Label Grid.Column="3"
+                                                               HorizontalOptions="Center"
+                                                               Text="{Binding EntryHour, StringFormat='{0:hh\\:mm}'}"></Label>
+                                                        <Label Grid.Column="4"
+                                                               HorizontalOptions="Center"
+                                                               Text="{Binding ExitHour, StringFormat='{0:hh\\:mm}'}"></Label>
 
-            <Frame >
-                <Grid  ColumnSpacing="10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0"
-                           HorizontalOptions="Center"
-                           Text="Steven"></Label>
-                    <Label Grid.Column="1"
-                           HorizontalOptions="Center"
-                           Text="28-5-24"></Label>
-                    <Label Grid.Column="2"
-                           HorizontalOptions="Center"
-                           Text="Telecable"></Label>
-                    <Label Grid.Column="3"
-                           HorizontalOptions="Center"
-                           Text="5:30"></Label>
-                    <Label Grid.Column="4"
-                     
-                           HorizontalOptions="Center"
-                           Text="18:00"></Label>
+                                                 </Grid>
+                                          </Frame>
+                                   </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                     </CollectionView>
+              </ScrollView>
 
-                </Grid>
-            </Frame>
-
-        </ScrollView>
-
-    </Grid>
+       </Grid>
 </ContentPage>
