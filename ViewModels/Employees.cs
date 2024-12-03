@@ -97,12 +97,10 @@ public class Employees : INotifyPropertyChangedAbs
             {
                 db.Employees.Remove(employee);
                 db.SaveChanges();
+                EmployeeList.Remove(employee);
+                OrderList();
             }
-
         }
-        EmployeeList.Remove(employee);
-        OrderList();
-
     }
     private async Task EditEmployee(Employee employee)
     {
