@@ -76,8 +76,6 @@ public class Employees : INotifyPropertyChangedAbs
                 }
                 OrderList();
             }
-
-
         }
         catch (Exception ex)
         {
@@ -97,19 +95,15 @@ public class Employees : INotifyPropertyChangedAbs
             {
                 db.Employees.Remove(employee);
                 db.SaveChanges();
+                EmployeeList.Remove(employee);
+                OrderList();
             }
-
         }
-        EmployeeList.Remove(employee);
-        OrderList();
-
     }
     private async Task EditEmployee(Employee employee)
     {
         try
         {
-
-
             var EmployeeName = await Application.Current.MainPage.DisplayPromptAsync("Nuevo Empleado", "Indique el nombre", "OK", "Cancelar");
             var EmployeeLastname1 = await Application.Current.MainPage.DisplayPromptAsync("Nuevo Empleado", "Indique el Primer Apellido", "OK", "Cancelar");
             var EmployeeLastname2 = await Application.Current.MainPage.DisplayPromptAsync("Nuevo Empleado", "Indique el Segundo Apellido", "OK", "Cancelar");
@@ -131,7 +125,6 @@ public class Employees : INotifyPropertyChangedAbs
                     db.SaveChanges();
                 }
                 Application.Current.MainPage.DisplayAlert("Atención", "Usuario Actualizado", "Ok");
-
                 EmployeeList.Remove(employee);
                 EmployeeList.Add(employee);
                 OrderList();
@@ -153,8 +146,6 @@ public class Employees : INotifyPropertyChangedAbs
                 EmployeeList.Add(item);
             }
         }
-
-
     }
     private async Task OrderList()
     {
