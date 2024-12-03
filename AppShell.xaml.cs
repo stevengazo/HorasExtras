@@ -10,5 +10,6 @@ public partial class AppShell : Shell
 
 		Routing.RegisterRoute("ViewProject", typeof(ViewProject));
 		Routing.RegisterRoute("AddExtra", typeof(AddExtra));
+		Routing.RegisterRoute("ViewExtra", typeof(ViewExtra));
 	}
 }

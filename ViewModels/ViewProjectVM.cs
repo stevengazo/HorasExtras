@@ -46,12 +46,14 @@ public class ViewProjectVM : INotifyPropertyChangedAbs
     }
     public Command IDeleteProject { get; set; }
     public Command ILoadExtras { get; set; }
+    public Command IViewExtras { get; set; }
     public ViewProjectVM()
     {
         ProjectObj = SharedData.SelectedProject;
         IAddExtra = new Command(() => AddExtra());
         ILoadExtras = new Command(() => LoadExtras());
         IDeleteProject = new Command(() => DeleteProject());
+        IViewExtras = new Command(() => ViewExtras());
         //   LoadExtras();
     }
 
@@ -133,6 +135,17 @@ public class ViewProjectVM : INotifyPropertyChangedAbs
         {
 
             throw;
+        }
+    }
+
+    private void ViewExtras()
+    {
+        try
+        {
+
+        }catch (System.Exception ex)
+        {
+            Console.WriteLine(ex.Message);  
         }
     }
 
