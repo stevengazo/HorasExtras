@@ -4,6 +4,7 @@
              xmlns:ViewModels="clr-namespace:HorasExtras.ViewModels"
              xmlns:Models="clr-namespace:HorasExtras.Models"
              x:Class="HorasExtras.Views.AddExtra"
+             x:Name="AddExtraPage"
              Title="Agregar Extra">
     <ContentPage.BindingContext>
         <ViewModels:AddExtraVM/>

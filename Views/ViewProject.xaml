@@ -4,6 +4,7 @@
              xmlns:ViewModels="clr-namespace:HorasExtras.ViewModels"
              xmlns:Models="clr-namespace:HorasExtras.Models"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Name="ViewProjectPage"
              x:Class="HorasExtras.Views.ViewProject"
              Title="Proyecto">
        <ContentPage.BindingContext>

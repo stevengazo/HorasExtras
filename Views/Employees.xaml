@@ -4,6 +4,7 @@
              xmlns:ViewModels="clr-namespace:HorasExtras.ViewModels"
              xmlns:Models="clr-namespace:HorasExtras.Models"
              x:Class="HorasExtras.Views.Employees"
+             x:Name="EmployeesPage"
              Padding="2,5,2,2"
              Title="Empleados">
     <ContentPage.BindingContext>
