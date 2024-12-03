@@ -52,7 +52,6 @@ public class AddExtraVM : INotifyPropertyChangedAbs
             }
         }
     }
-
     public Command IAddExtra { get; set; }
     public Command Close { get; }
     private async Task AddExtra()

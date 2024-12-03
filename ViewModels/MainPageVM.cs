@@ -30,7 +30,7 @@ public class MainPageVM : INotifyPropertyChangedAbs
         }
         private set { }
     }
-  public Command ILoadProjects { get; set; }
+    public Command ILoadProjects { get; set; }
     public IAsyncRelayCommand<Project> IViewProject
     {
         get;
@@ -38,9 +38,10 @@ public class MainPageVM : INotifyPropertyChangedAbs
     }
     public MainPageVM()
     {
-      /// LoadProjectsAsync();
+        LoadData();
+        /// LoadProjectsAsync();
         IViewProject = new AsyncRelayCommand<Project>(ViewProject);
-        ILoadProjects = new Command( async () => await LoadProjectsAsync());
+        ILoadProjects = new Command(async () => await LoadProjectsAsync());
     }
     private async Task AddProjectAsync()
     {
@@ -67,6 +68,13 @@ public class MainPageVM : INotifyPropertyChangedAbs
             Console.WriteLine(e.Message);
             throw;
         }
+    }
+    private void LoadData()
+    {
+        //  SharedData..User = new UserProfile();
+
+        // StaticData.User.UserName = Preferences.Get(nameof(UserProfile.UserName), "Default User");
+        //  StaticData.User.DNI = int.Parse(Preferences.Get(nameof(UserProfile.DNI), "00000000"));
     }
     private async Task LoadProjectsAsync()
     {

@@ -7,7 +7,7 @@
              x:Class="HorasExtras.Views.Configuration"
              Title="Configuración">
     <ContentPage.BindingContext>
-        <ViewModels:Configuration/>
+        <ViewModels:ConfigurationVM/>
     </ContentPage.BindingContext>
     <Grid>
         <Grid.RowDefinitions>
