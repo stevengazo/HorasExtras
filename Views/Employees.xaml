@@ -79,7 +79,7 @@
             AbsoluteLayout.LayoutFlags="PositionProportional"
             VerticalOptions="End"
             HorizontalOptions="End"
-            BackgroundColor="Blue"
+            BackgroundColor="{StaticResource Secondary}"
             HeightRequest="50"
             WidthRequest="50"
             Padding="2"

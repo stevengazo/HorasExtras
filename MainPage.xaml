@@ -44,7 +44,7 @@
                             Margin="10,1,10,1"
                             Padding="5"
                             HeightRequest="50"
-                            BorderColor="LightGray"
+                            BorderColor="{StaticResource Secondary}"
                             CornerRadius="5">
                    
                             <Frame.GestureRecognizers>
@@ -82,7 +82,7 @@
             <ImageButton
                 Source="add.png"
                 HorizontalOptions="Center"
-                Background="Blue"
+                Background="{StaticResource Secondary}"
                 HeightRequest="50"
                 WidthRequest="50"
                 Padding="2"

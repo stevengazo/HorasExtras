@@ -136,10 +136,11 @@
                                                  </SwipeView.RightItems>
                                                  <Frame HeightRequest="50"
                                                         Margin="5"
+                                                        BorderColor="{StaticResource Secondary}"
                                                         HasShadow="True"
                                                         Padding="0">
                                                         <Frame.Shadow>
-                                                               <Shadow Brush="Gray"
+                                                               <Shadow Brush="{StaticResource Secondary}"
                                                                        Offset="5,5"
                                                                        Radius="10"
                                                                        Opacity="0.5"/>
@@ -185,7 +186,7 @@
               </ScrollView>
               <Button Grid.Row="5"
                       Margin="10"
-                      Background="blue"
+                      Background="{StaticResource Tertiary}"
                       WidthRequest="120"
                       TextColor="White"
                       Command="{Binding IAddExtra}"

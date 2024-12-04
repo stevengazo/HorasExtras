@@ -7,9 +7,9 @@
     xmlns:Views="clr-namespace:HorasExtras.Views"
     Shell.FlyoutBehavior="Disabled"
     Shell.TabBarForegroundColor="White"
-    Shell.TabBarUnselectedColor="lightgreen"
+    Shell.TabBarUnselectedColor="{StaticResource Secondary}"
     Shell.TabBarTitleColor="White"
-    Shell.TabBarBackgroundColor="green"
+    Shell.TabBarBackgroundColor="{StaticResource Primary}"
     Shell.UnselectedColor="WhiteSmoke"
     Title="HorasExtras">
 
