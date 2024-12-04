@@ -46,15 +46,31 @@ public class ViewProjectVM : INotifyPropertyChangedAbs
     }
     public Command IDeleteProject { get; set; }
     public Command ILoadExtras { get; set; }
-    public Command IViewExtras { get; set; }
+    public Command IDeleteExtra { get; set; }
+    public Command<Extras> IEditExtra { get; private set; }
+
     public ViewProjectVM()
     {
         ProjectObj = SharedData.SelectedProject;
         IAddExtra = new Command(() => AddExtra());
         ILoadExtras = new Command(() => LoadExtras());
         IDeleteProject = new Command(() => DeleteProject());
-        IViewExtras = new Command(() => ViewExtras());
+        IDeleteExtra = new Command<Extras>(async (parameter) => await DeleteExtra(parameter));
+        IEditExtra = new Command<Extras>(async (parameter) => await EditExtra(parameter));
         //   LoadExtras();
+    }
+
+    private async Task EditExtra(Extras parameter)
+    {
+        try
+        {
+            SharedData.SelectedExtra = parameter;
+            await Shell.Current.GoToAsync(nameof(EditExtra));
+        }
+        catch (System.Exception E)
+        {
+            Console.WriteLine(E.Message);
+        }
     }
 
     private async Task DeleteProject()
@@ -138,21 +154,32 @@ public class ViewProjectVM : INotifyPropertyChangedAbs
         }
     }
 
-    private void ViewExtras()
+    private async Task DeleteExtra(Extras e)
     {
         try
         {
-             bool response = Application.Current.MainPage.DisplayAlert(
-                "Pregunta",    // Título del diálogo
-                "¿Deseas borrar esta hora extra?",  // Mensaje del diálogo
-                "Sí",     // Texto del botón Sí
-                "No"      // Texto del botón No
-            ).Result;
-               Shell.Current.GoToAsync("ViewExtra");
+            bool response = await Application.Current.MainPage.DisplayAlert(
+               "Pregunta",    // Título del diálogo
+               "Desea Borrar esta extra",  // Mensaje del diálogo
+               "Sí",     // Texto del botón Sí
+               "No"      // Texto del botón No
+           );
 
-        }catch (System.Exception ex)
+            if (response)
+            {
+                using (var db = new ProjectHoursContext())
+                {
+                    db.Extras.Remove(e);
+                    db.SaveChanges();
+                }
+                this.Extras.Remove(e);
+            }
+            // await Shell.Current.GoToAsync("ViewExtra");
+
+        }
+        catch (System.Exception ex)
         {
-            Console.WriteLine(ex.Message);  
+            Console.WriteLine(ex.Message);
         }
     }
 

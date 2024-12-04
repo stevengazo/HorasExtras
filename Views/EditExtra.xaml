@@ -5,12 +5,136 @@
              xmlns:ViewModels="clr-namespace:HorasExtras.ViewModels"
              xmlns:Models="clr-namespace:HorasExtras.Models"
              x:Name="EditExtraPage"
-             Title="EditExtra">
-             
+             Title="Edición de Hora Extra">
+    <ContentPage.BindingContext>
+        <ViewModels:EditExtraVM/>
+    </ContentPage.BindingContext>
+
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Frame
+            Margin="10,0,10,10"
+            HasShadow="True"
+            Background="White">
+            <Frame.Shadow>
+                <Shadow Brush="Gray"
+                        Offset="5,5"
+                        Radius="10"
+                        Opacity="0.5"/>
+            </Frame.Shadow>
+
+            <Grid Padding="10"
+                  HorizontalOptions="CenterAndExpand"
+                  ColumnSpacing="10"
+                  RowDefinitions="Auto, Auto,Auto,Auto, Auto, 120"
+                  ColumnDefinitions="Auto, *">
+                <!-- Fila 0 -->
+                <Label
+                    Text="Persona"
+                    VerticalOptions="Center"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    Grid.Row="0"
+                    Grid.Column="0"/>
+
+                <Picker
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    VerticalOptions="Center"
+                    Title="Seleccione"
+                    BackgroundColor="{AppThemeBinding Light=White, Dark=Gray}"
+                    Margin="2"
+                    SelectedItem="{Binding EmployeeName, Mode=TwoWay}"
+                    TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                    ItemsSource="{Binding employees}"/>
+
+                <!-- Fila 1 -->
+                <Label
+                    Text="Fecha"
+                    VerticalOptions="Center"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    Grid.Row="1"
+                    Grid.Column="0"/>
+
+                <DatePicker
+                    Grid.Row="1"
+                    Date="{Binding Extra.Day}"
+                    Grid.Column="1"/>
+
+                <!-- Fila 2 -->
+                <Label
+                    Text="Hora Entrada"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    Grid.Row="2"
+                    Grid.Column="0"/>
+
+                <TimePicker
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Time="{Binding Extra.EntryHour}"/>
+
+                <!-- Fila 3 -->
+                <Label
+                    Text="Hora Salida"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    Grid.Row="3"
+                    Grid.Column="0"/>
+
+                <TimePicker
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Time="{Binding Extra.ExitHour}"/>
+                <!-- Fila 4 -->
+                <Label
+                    Text="Notas"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    Grid.Row="4"
+                    Grid.Column="0"/>
+
+                <Editor
+                    Grid.Row="5"
+                    WidthRequest="300"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Text="{Binding Extra.Notes}"
+                    AutoSize="TextChanges"/>
+            </Grid>
+        </Frame>
+        <HorizontalStackLayout HorizontalOptions="Center"
+                Spacing="10">
+            <Button Text="Editar Extra"
+                    Background="Green"
+                    TextColor="White"
+                    WidthRequest="120"
+                    HeightRequest="50">
+                <Button.Shadow>
+                    <Shadow Brush="Gray"
+                            Offset="5,5"
+                            Radius="10"
+                            Opacity="0.5"/>
+                </Button.Shadow>
+            </Button>
+            <Button Text="Cancelar"
+                    Background="Red"
+                    TextColor="White"
+                    WidthRequest="120"
+                    HeightRequest="50">
+                <Button.Shadow>
+                    <Shadow Brush="Gray"
+                            Offset="5,5"
+                            Radius="10"
+                            Opacity="0.5"/>
+                </Button.Shadow>
+            </Button>
+
+        </HorizontalStackLayout>
+
     </VerticalStackLayout>
+
 </ContentPage>

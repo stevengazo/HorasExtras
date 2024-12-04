@@ -124,15 +124,15 @@
                                                  <SwipeView.LeftItems>
                                                         <SwipeItem BackgroundColor="Red"
                                                                    IconImageSource="delete.png"
-                                                                   Command="{Binding BindingContext.IViewExtras, Source={x:Reference ViewProjectPage}}"
-                                                                   
-                                                                   
-                                                                   ></SwipeItem>
+                                                                   Command="{Binding BindingContext.IDeleteExtra, Source={x:Reference ViewProjectPage}}"
+                                                                   CommandParameter="{Binding .}"></SwipeItem>
                                                  </SwipeView.LeftItems>
                                                  <SwipeView.RightItems>
                                                         <SwipeItem BackgroundColor="green"
-                                                                   IconImageSource="edit.png"></SwipeItem>
-                                                        
+                                                                   IconImageSource="edit.png"
+                                                                   Command="{Binding BindingContext.IEditExtra, Source={x:Reference ViewProjectPage}}"
+                                                                   CommandParameter="{Binding .}"></SwipeItem>
+
                                                  </SwipeView.RightItems>
                                                  <Frame HeightRequest="50"
                                                         Margin="5"
