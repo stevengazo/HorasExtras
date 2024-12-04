@@ -120,50 +120,65 @@
                      <CollectionView ItemsSource="{Binding Extras}">
                             <CollectionView.ItemTemplate>
                                    <DataTemplate>
-                                          <Frame HeightRequest="50"
-                                                 Margin="5"
-                                                 HasShadow="True"
-                                                 Padding="0">
-                                                 <Frame.Shadow>
-                                                        <Shadow Brush="Gray"
-                                                                Offset="5,5"
-                                                                Radius="10"
-                                                                Opacity="0.5"/>
-                                                 </Frame.Shadow>
+                                          <SwipeView>
+                                                 <SwipeView.LeftItems>
+                                                        <SwipeItem BackgroundColor="Red"
+                                                                   IconImageSource="delete.png"
+                                                                   Command="{Binding BindingContext.IViewExtras, Source={x:Reference ViewProjectPage}}"
+                                                                   
+                                                                   
+                                                                   ></SwipeItem>
+                                                 </SwipeView.LeftItems>
+                                                 <SwipeView.RightItems>
+                                                        <SwipeItem BackgroundColor="green"
+                                                                   IconImageSource="edit.png"></SwipeItem>
+                                                        
+                                                 </SwipeView.RightItems>
+                                                 <Frame HeightRequest="50"
+                                                        Margin="5"
+                                                        HasShadow="True"
+                                                        Padding="0">
+                                                        <Frame.Shadow>
+                                                               <Shadow Brush="Gray"
+                                                                       Offset="5,5"
+                                                                       Radius="10"
+                                                                       Opacity="0.5"/>
+                                                        </Frame.Shadow>
 
-                                                 <Grid
-                                                        HorizontalOptions="FillAndExpand">
-                                                        <Grid.ColumnDefinitions>
-                                                               <ColumnDefinition Width="*"/>
-                                                               <ColumnDefinition Width="*"/>
-                                                               <ColumnDefinition Width="*"/>
-                                                               <ColumnDefinition Width="*"/>
-                                                               <ColumnDefinition Width="*"/>
-                                                        </Grid.ColumnDefinitions>
-                                                        <Label Grid.Column="0"
-                                                               VerticalOptions="Center"
-                                                               HorizontalTextAlignment="Center"
-                                                               FontAttributes="Bold"
-                                                               Text="{Binding Employee.EmployeeName}"></Label>
-                                                        <Label Grid.Column="1"
-                                                               VerticalOptions="Center"
-                                                               HorizontalTextAlignment="Center"
-                                                               Text="{Binding Day, StringFormat='{}{0:dddd, dd MMM yyyy}'}"></Label>
-                                                        <Label Grid.Column="2"
-                                                               VerticalOptions="Center"
-                                                               FontAttributes="Bold"
-                                                               HorizontalTextAlignment="Center"
-                                                               Text="{Binding EntryHour, StringFormat='{0:hh\\:mm}'}"></Label>
-                                                        <Label Grid.Column="3"
-                                                               VerticalOptions="Center"
-                                                               HorizontalTextAlignment="Center"
-                                                               Text="{Binding ExitHour, StringFormat='{0:hh\\:mm}'}"></Label>
-                                                        <Label Grid.Column="4"
-                                                               VerticalOptions="Center"
-                                                               HorizontalTextAlignment="Center"
-                                                               Text="{Binding TotalDuration, StringFormat='{0:hh\\:mm}'}"></Label>
-                                                 </Grid>
-                                          </Frame>
+                                                        <Grid
+                                                               HorizontalOptions="FillAndExpand">
+                                                               <Grid.ColumnDefinitions>
+                                                                      <ColumnDefinition Width="*"/>
+                                                                      <ColumnDefinition Width="*"/>
+                                                                      <ColumnDefinition Width="*"/>
+                                                                      <ColumnDefinition Width="*"/>
+                                                                      <ColumnDefinition Width="*"/>
+                                                               </Grid.ColumnDefinitions>
+                                                               <Label Grid.Column="0"
+                                                                      VerticalOptions="Center"
+                                                                      HorizontalTextAlignment="Center"
+                                                                      FontAttributes="Bold"
+                                                                      Text="{Binding Employee.EmployeeName}"></Label>
+                                                               <Label Grid.Column="1"
+                                                                      VerticalOptions="Center"
+                                                                      HorizontalTextAlignment="Center"
+                                                                      Text="{Binding Day, StringFormat='{}{0:dddd, dd MMM yyyy}'}"></Label>
+                                                               <Label Grid.Column="2"
+                                                                      VerticalOptions="Center"
+                                                                      FontAttributes="Bold"
+                                                                      HorizontalTextAlignment="Center"
+                                                                      Text="{Binding EntryHour, StringFormat='{0:hh\\:mm}'}"></Label>
+                                                               <Label Grid.Column="3"
+                                                                      VerticalOptions="Center"
+                                                                      HorizontalTextAlignment="Center"
+                                                                      Text="{Binding ExitHour, StringFormat='{0:hh\\:mm}'}"></Label>
+                                                               <Label Grid.Column="4"
+                                                                      VerticalOptions="Center"
+                                                                      HorizontalTextAlignment="Center"
+                                                                      Text="{Binding TotalDuration, StringFormat='{0:hh\\:mm}'}"></Label>
+                                                        </Grid>
+                                                 </Frame>
+                                          </SwipeView>
                                    </DataTemplate>
                             </CollectionView.ItemTemplate>
                      </CollectionView>

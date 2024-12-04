@@ -142,6 +142,13 @@ public class ViewProjectVM : INotifyPropertyChangedAbs
     {
         try
         {
+             bool response = Application.Current.MainPage.DisplayAlert(
+                "Pregunta",    // Título del diálogo
+                "¿Deseas borrar esta hora extra?",  // Mensaje del diálogo
+                "Sí",     // Texto del botón Sí
+                "No"      // Texto del botón No
+            ).Result;
+               Shell.Current.GoToAsync("ViewExtra");
 
         }catch (System.Exception ex)
         {
