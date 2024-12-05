@@ -1,6 +1,8 @@
 using System;
 using HorasExtras.Data;
 using HorasExtras.Models;
+using Microsoft.EntityFrameworkCore;
+using SQLitePCL;
 
 namespace HorasExtras.ViewModels;
 
@@ -42,15 +44,21 @@ public class EditExtraVM : INotifyPropertyChangedAbs
 
     public EditExtraVM()
     {
-        Extra = SharedData.SelectedExtra;
+        LoadEmployees();
+
+    
+
+        using (var db = new ProjectHoursContext())
+        {
+            Extra = db.Extras.Include(e=>e.Employee).FirstOrDefault(e => e.ExtraId == SharedData.SelectedExtra.ExtraId);
+        }
+
         IClosePage = new Command(async () => await ClosePageAsync());
         IUpdateExtra = new Command(async () => await UpdateExtraAsync());
-        LoadEmployees();
-        
-        if (Extra != null)
-        {
-            EmployeeName = $"{Extra.Employee.EmployeeName} {Extra.Employee.LastName} {Extra.Employee.SecondLastName}";
-        }
+
+
+        EmployeeName = $"{Extra.Employee.EmployeeName} {Extra.Employee.LastName} {Extra.Employee.SecondLastName}";
+
     }
     private async Task ClosePageAsync()
     {
@@ -60,7 +68,7 @@ public class EditExtraVM : INotifyPropertyChangedAbs
     {
         return name.Split(' ').ToArray();
     }
-    private async Task LoadEmployees()
+    private void LoadEmployees()
     {
 
         using (var db = new ProjectHoursContext())
@@ -75,9 +83,25 @@ public class EditExtraVM : INotifyPropertyChangedAbs
     {
         try
         {
-            using (var db = new ProjectHoursContext())
+            if (!string.IsNullOrEmpty(EmployeeName))
             {
-                db.Extras.Update(Extra);
+                var name = await GetName(EmployeeName);
+
+                using (var db = new ProjectHoursContext())
+                {
+                    Extra.Employee= null;
+                    var e = (from i in db.Employees
+                             where i.EmployeeName == name[0] && i.LastName == name[1]
+                             select i).FirstOrDefault();
+                    Extra.EmployeeId = e != null ? e.EmployeeId : throw new NullReferenceException("Error");
+                    db.Extras.Update(Extra);
+                    db.SaveChanges();
+                }
+                await ClosePageAsync();
+            }
+            else
+            {
+                Application.Current.MainPage.DisplayAlert("Advertencia", "Verifique el nombre del empleado", "OK");
             }
         }
         catch (System.Exception ex)

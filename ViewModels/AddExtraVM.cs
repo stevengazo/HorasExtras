@@ -59,7 +59,7 @@ public class AddExtraVM : INotifyPropertyChangedAbs
 
         try
         {
-            if (EmployeeName != null)
+            if (EmployeeName != null && ! (Extra.EntryHour> Extra.ExitHour))
             {
                 using (var db = new ProjectHoursContext())
                 {
@@ -92,6 +92,9 @@ public class AddExtraVM : INotifyPropertyChangedAbs
                         Application.Current.MainPage.DisplayAlert("información", "Seleccione el siguiente empleado", "OK");
                     }
                 }
+            }
+            else if( (Extra.EntryHour> Extra.ExitHour) ){
+                Application.Current.MainPage.DisplayAlert("Advertencia","La hora de entrada no puede ser posterior a la hora de salida","Ok");
             }
         }
         catch (System.Exception e)

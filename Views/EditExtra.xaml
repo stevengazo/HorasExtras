@@ -111,6 +111,7 @@
             <Button Text="Editar Extra"
                     Background="Green"
                     TextColor="White"
+                    Command="{Binding IUpdateExtra}"
                     WidthRequest="120"
                     HeightRequest="50">
                 <Button.Shadow>
@@ -123,6 +124,7 @@
             <Button Text="Cancelar"
                     Background="Red"
                     TextColor="White"
+                    Command="{Binding IClosePage}"
                     WidthRequest="120"
                     HeightRequest="50">
                 <Button.Shadow>

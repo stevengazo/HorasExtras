@@ -4,6 +4,7 @@ using iText.Kernel.Pdf;
 using iText.Layout;
 using iText.Layout.Element;
 using iText.Layout.Properties;
+using iText.Layout.Renderer;
 
 namespace HorasExtras.Utilities;
 
@@ -13,9 +14,9 @@ public class PDFGenerate
     {
         try
         {
-            var UserName =  Preferences.Get("UserName", "Default User");
+            var UserName = Preferences.Get("UserName", "Default User");
             ;
-           
+
             using (MemoryStream ms = new MemoryStream())
             {
                 PdfWriter writer = new PdfWriter(ms);
@@ -70,7 +71,17 @@ public class PDFGenerate
         table.AddCell(ProjectName);
         table.AddCell(Entry.ToString(@"hh\:mm"));
         table.AddCell(Exit.ToString(@"hh\:mm"));
-        table.AddCell(TimeSpanTotal.ToString(@"hh\:mm"));
-        table.AddCell(note);
+
+        if (Entry > Exit)
+        {
+            iText.Layout.Element.Cell cell = new iText.Layout.Element.Cell().Add(new Paragraph(TimeSpanTotal.ToString(@"hh\:mm")).SetFontColor(iText.Kernel.Colors.ColorConstants.RED));
+            table.AddCell(cell);
+            table.AddCell(note + ". VERIFICAR HORAS");
+        }
+        else
+        {
+            table.AddCell(TimeSpanTotal.ToString(@"hh\:mm"));
+            table.AddCell(note);
+        }
     }
 }

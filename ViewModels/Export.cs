@@ -88,6 +88,13 @@ public class Export : INotifyPropertyChangedAbs
                 ListExtras.Add(extras);
             }
 
+            var errorsExtras = (from i in results
+            where i.EntryHour> i.ExitHour 
+            select i).ToList();
+            if(errorsExtras.Count > 0) {
+                Application.Current.MainPage.DisplayAlert("Advertencia","Existen registros de horas extras que estan mal","OK");
+            }
+
         }
     }
 
