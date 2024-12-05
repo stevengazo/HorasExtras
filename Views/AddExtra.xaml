@@ -14,7 +14,7 @@
         <Frame
             Margin="10,0,10,10"
             HasShadow="True"
-            Background="White"
+            Background="gray"
             >
             <Frame.Shadow>
                       <Shadow Brush="Gray"

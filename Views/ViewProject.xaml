@@ -30,6 +30,7 @@
                      FontAttributes="Bold"
                      Margin="10">Datos del Proyecto</Label>
               <Grid Grid.Row="1"
+                     RowSpacing="10"
                     Padding="10"
                     HorizontalOptions="FillAndExpand">
                      <Grid.RowDefinitions>
@@ -52,7 +53,7 @@
                             HorizontalTextAlignment="Center"
                             Text="{Binding ProjectObj.ProjectName}"></Label>
                      <Label Grid.Column="0"
-                            Grid.Row="1"
+                                                        Grid.Row="1"
                             FontSize="Subtitle"
                             FontAttributes="Bold"
                             HorizontalTextAlignment="Center"
@@ -105,6 +106,7 @@
                              HeightRequest="35"
                              VerticalOptions="Center"
                              WidthRequest="150"
+                             TextColor="White"
                              Background="Red"
                              Command="{Binding  IDeleteProject}">
                             <Button.Shadow>
