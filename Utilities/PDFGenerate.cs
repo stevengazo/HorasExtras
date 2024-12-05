@@ -13,6 +13,9 @@ public class PDFGenerate
     {
         try
         {
+            var UserName =  Preferences.Get("UserName", "Default User");
+            ;
+           
             using (MemoryStream ms = new MemoryStream())
             {
                 PdfWriter writer = new PdfWriter(ms);
@@ -22,7 +25,11 @@ public class PDFGenerate
                                     .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
                                     .SetFontSize(20);
                 Paragraph DateInfo = new Paragraph($"Fecha de Generación {DateTime.Now.ToString()}").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER).SetFontSize(12);
+                Paragraph Author = new Paragraph($"Autor: {UserName}").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER).SetFontSize(14);
+
+
                 document.Add(header);
+                document.Add(Author);
                 document.Add(DateInfo);
                 addDataTable(document, extras);
                 document.Close();

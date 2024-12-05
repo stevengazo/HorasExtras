@@ -26,7 +26,8 @@
             <HorizontalStackLayout HorizontalOptions="Center">
                 <Label VerticalOptions="Center"
                        FontAttributes="Bold">Usuario</Label>
-                <Entry WidthRequest="150"></Entry>
+                <Entry WidthRequest="150"
+                       Text="{Binding UserName}"></Entry>
             </HorizontalStackLayout>
             <HorizontalStackLayout HorizontalOptions="Center">
                 <Label VerticalOptions="Center"
@@ -34,10 +35,11 @@
                 <Entry WidthRequest="150"></Entry>
             </HorizontalStackLayout>
             <Button Text="Guardar Datos"
+                    Command="{Binding ISetUser}"
                     WidthRequest="200"/>
         </VerticalStackLayout>
         <Line Grid.Row="2"
-            HorizontalOptions="CenterAndExpand"
+              HorizontalOptions="CenterAndExpand"
               X1="0"
               Y1="0"
               X2="300"
@@ -47,11 +49,12 @@
                HorizontalOptions="Center"
                FontSize="Title">Opciones</Label>
         <VerticalStackLayout Grid.Row="4"
-            Spacing="20"
+                             Spacing="20"
                              Padding="20">
             <Label HorizontalOptions="Center">Borrar Proyectos y Registros de Extras</Label>
             <Button Text="Borrar"
                     Background="Red"
+                    Command="{Binding IEraseDB}"
                     WidthRequest="200"/>
         </VerticalStackLayout>
     </Grid>

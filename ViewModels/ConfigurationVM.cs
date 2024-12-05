@@ -30,14 +30,24 @@ public class ConfigurationVM : INotifyPropertyChangedAbs
     {
         try
         {
-            using (var db = new ProjectHoursContext())
+            // Mostrar el cuadro de diálogo con opciones Sí y No
+            bool responseA = await Application.Current.MainPage.DisplayAlert(
+                "Pregunta",    // Título del diálogo
+                "Deseas las horas extras y proyectos guardados",  // Mensaje del diálogo
+                "Sí",     // Texto del botón Sí
+                "No"      // Texto del botón No
+            );
+            if (responseA)
             {
-                var extras = db.Extras.AsNoTracking().ToList();
-                db.Extras.RemoveRange(extras);
-                var proj = db.Projects.AsNoTracking().ToList();
-                db.Projects.RemoveRange(proj);
-                db.SaveChanges();
-                Application.Current.MainPage.DisplayAlert("Información", "La base de datos fue borrada", "OK");
+                using (var db = new ProjectHoursContext())
+                {
+                    var extras = db.Extras.AsNoTracking().ToList();
+                    db.Extras.RemoveRange(extras);
+                    var proj = db.Projects.AsNoTracking().ToList();
+                    db.Projects.RemoveRange(proj);
+                    db.SaveChanges();
+                    Application.Current.MainPage.DisplayAlert("Información", "La base de datos fue borrada", "OK");
+                }
             }
         }
         catch (System.Exception ex)
@@ -50,9 +60,8 @@ public class ConfigurationVM : INotifyPropertyChangedAbs
     {
         try
         {
-
-          //  SharedData.User.UserName = User.UserName;
-          //  Preferences.Set(nameof(UserProfile.UserName), User.UserName);
+            UserName = string.IsNullOrEmpty(UserName) ? "" : UserName; 
+            Preferences.Set(nameof(UserName), UserName);
             Application.Current.MainPage.DisplayAlert("Información", "Usuario Actualizado", "Ok");
         }
         catch (System.Exception ex)

@@ -8,4 +8,5 @@ public static class SharedData
 
     public static Project SelectedProject { get; set; } = new Project();
     public static Extras SelectedExtra { get; set; } = new Extras();
+
 }

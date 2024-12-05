@@ -6,18 +6,17 @@
     xmlns:local="clr-namespace:HorasExtras"
     xmlns:Views="clr-namespace:HorasExtras.Views"
     Shell.FlyoutBehavior="Disabled"
+    Background="AliceBlue"
     Shell.TabBarForegroundColor="White"
     Shell.TabBarUnselectedColor="{StaticResource Secondary}"
     Shell.TabBarTitleColor="White"
     Shell.TabBarBackgroundColor="{StaticResource Primary}"
     Shell.UnselectedColor="WhiteSmoke"
-    Title="HorasExtras">
+    BackgroundColor="{StaticResource PrimaryDark}"
+    Title="Horas Extras">
 
-    <TabBar
-        
-        >
+    <TabBar>
         <ShellContent
-            
             Title="Proyectos"
             ContentTemplate="{DataTemplate local:MainPage}"
             Route="MainPage"
