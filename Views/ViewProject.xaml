@@ -6,6 +6,7 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Name="ViewProjectPage"
              x:Class="HorasExtras.Views.ViewProject"
+             Padding="1"
              Title="Proyecto">
        <ContentPage.BindingContext>
               <ViewModels:ViewProjectVM/>
@@ -30,7 +31,7 @@
                      FontAttributes="Bold"
                      Margin="10">Datos del Proyecto</Label>
               <Grid Grid.Row="1"
-                     RowSpacing="10"
+                    RowSpacing="10"
                     Padding="10"
                     HorizontalOptions="FillAndExpand">
                      <Grid.RowDefinitions>
@@ -53,7 +54,7 @@
                             HorizontalTextAlignment="Center"
                             Text="{Binding ProjectObj.ProjectName}"></Label>
                      <Label Grid.Column="0"
-                                                        Grid.Row="1"
+                            Grid.Row="1"
                             FontSize="Subtitle"
                             FontAttributes="Bold"
                             HorizontalTextAlignment="Center"
@@ -110,7 +111,7 @@
                              Background="Red"
                              Command="{Binding  IDeleteProject}">
                             <Button.Shadow>
-                                   <Shadow Brush="Gray"
+                                   <Shadow Brush="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Black}}"
                                            Offset="5,5"
                                            Radius="10"
                                            Opacity="0.5"/>
@@ -138,15 +139,11 @@
                                                  </SwipeView.RightItems>
                                                  <Frame HeightRequest="50"
                                                         Margin="5"
-                                                        BorderColor="{StaticResource Secondary}"
+                                                        Background="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray600}}"
+                                                        BorderColor="{AppThemeBinding Light={StaticResource Gray400Brush}, Dark={StaticResource Gray500}}"
+                                                        CornerRadius="10"
                                                         HasShadow="True"
                                                         Padding="0">
-                                                        <Frame.Shadow>
-                                                               <Shadow Brush="{StaticResource Secondary}"
-                                                                       Offset="5,5"
-                                                                       Radius="10"
-                                                                       Opacity="0.5"/>
-                                                        </Frame.Shadow>
 
                                                         <Grid
                                                                HorizontalOptions="FillAndExpand">
@@ -188,14 +185,14 @@
               </ScrollView>
               <Button Grid.Row="5"
                       Margin="10"
-                      Background="{StaticResource Tertiary}"
+                      Background="{AppThemeBinding Light={StaticResource c-Success}, Dark={StaticResource c-Success}}"
                       WidthRequest="120"
                       TextColor="White"
                       Command="{Binding IAddExtra}"
                       Text="Agregar Extra">
 
                      <Button.Shadow>
-                            <Shadow Brush="Gray"
+                            <Shadow Brush="{AppThemeBinding Light={StaticResource Gray100Brush}, Dark={StaticResource BlackBrush}}"
                                     Offset="5,5"
                                     Radius="10"
                                     Opacity="0.5"/>

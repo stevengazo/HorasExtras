@@ -23,49 +23,54 @@
                 VerticalOptions="Start">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame  
-                                Margin="0,2,0,2"
-                                Padding="5"
-                                HeightRequest="50"
-                                BorderColor="LightGray"
-                                CornerRadius="5"
-                                >
+                        <Frame
+                            Margin="0,2,0,2"
+                            Padding="0"
+                            HeightRequest="50"
+                            Background="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray600}}"
+                            BorderColor="{AppThemeBinding Light={StaticResource Gray400Brush}, Dark={StaticResource Gray500}}"
+                            CornerRadius="10">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="50"/>
-                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
                                 </Grid.ColumnDefinitions>
                                 <HorizontalStackLayout
-                                     Margin="10,0,0,0"
-                                     HorizontalOptions="StartAndExpand"
-                                     VerticalOptions="Center"
-                                     Grid.Column="0"
-                                     Spacing="4">
-                                    <Label FontSize="Body" Text="{Binding EmployeeName}"/>
-                                    <Label FontSize="Body" Text="{Binding LastName}"/>
-                                    <Label FontSize="Body" Text="{Binding SecondLastName}"/>
+                                    Margin="10,0,0,0"
+                                    HorizontalOptions="StartAndExpand"
+                                    VerticalOptions="Center"
+                                    Grid.Column="0"
+                                    Spacing="4">
+                                    <Label FontSize="Body"
+                                            Text="{Binding EmployeeName}"/>
+                                    <Label FontSize="Body"
+                                            Text="{Binding LastName}"/>
+                                    <Label FontSize="Body"
+                                            Text="{Binding SecondLastName}"/>
                                 </HorizontalStackLayout>
                                 <ImageButton
-                                     WidthRequest="40"
-                                     HeightRequest="40"
-                                     Padding="2"
-                                     CornerRadius="4"
-                                     Grid.Column="1"
-                                     Command="{Binding Source={RelativeSource AncestorType={x:Type ViewModels:Employees}}, Path=IEditEmployee}"
-                                     CommandParameter="{Binding .}"
-                                     Source="edit.png"
-                                     Background="Green"/>
+                                    Margin="2"
+                                    WidthRequest="40"
+                                    HeightRequest="40"
+                                    Padding="6"
+                                    CornerRadius="25"
+                                    Grid.Column="1"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ViewModels:Employees}}, Path=IEditEmployee}"
+                                    CommandParameter="{Binding .}"
+                                    Source="edit.png"
+                                    Background="{StaticResource c-Success}"/>
                                 <ImageButton
-                                     WidthRequest="40"
-                                     HeightRequest="40"
-                                     Padding="2"
-                                     CornerRadius="4"
-                                     Grid.Column="3"
-                                     Command="{Binding Source={RelativeSource AncestorType={x:Type ViewModels:Employees}}, Path=IDeleteEmployee}"
-                                     CommandParameter="{Binding .}"
-                                     Source="delete.png"
-                                     Background="red"/>
+                                    Margin="2"
+                                    WidthRequest="40"
+                                    HeightRequest="40"
+                                    Padding="6"
+                                    CornerRadius="25"
+                                    Grid.Column="3"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ViewModels:Employees}}, Path=IDeleteEmployee}"
+                                    CommandParameter="{Binding .}"
+                                    Source="delete.png"
+                                    Background="{StaticResource c-Error}"/>
                             </Grid>
                         </Frame>
                     </DataTemplate>
@@ -74,7 +79,7 @@
         </ScrollView>
         <!-- Botón en la esquina inferior derecha -->
         <ImageButton
-        Source="add.png"
+            Source="add.png"
             AbsoluteLayout.LayoutBounds="1, 1, AutoSize, AutoSize"
             AbsoluteLayout.LayoutFlags="PositionProportional"
             VerticalOptions="End"
@@ -88,7 +93,7 @@
             Command="{Binding IAddEmployee}">
             <!-- Agregar sombra -->
             <ImageButton.Shadow>
-                <Shadow Brush="Gray"
+                <Shadow Brush="{AppThemeBinding Light={StaticResource Gray200Brush}}"
                         Offset="5,5"
                         Radius="10"
                         Opacity="0.5"/>

@@ -5,6 +5,7 @@
              xmlns:ViewModels="clr-namespace:HorasExtras.ViewModels"
              xmlns:Models="clr-namespace:HorasExtras.Models"
              x:Name="EditExtraPage"
+             Padding="1"
              Title="Edición de Hora Extra">
     <ContentPage.BindingContext>
         <ViewModels:EditExtraVM/>
@@ -12,11 +13,12 @@
 
     <VerticalStackLayout>
         <Frame
-            Margin="10,0,10,10"
+            Margin="10,10,10,10"
             HasShadow="True"
-            Background="White">
+            BorderColor="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource Gray600}}"
+            Background="{AppThemeBinding Light=#ffffff, Dark={StaticResource Gray600}}">
             <Frame.Shadow>
-                <Shadow Brush="Gray"
+                <Shadow Brush="{AppThemeBinding Light={StaticResource Gray300}}"
                         Offset="5,5"
                         Radius="10"
                         Opacity="0.5"/>
@@ -41,7 +43,6 @@
                     Grid.Column="1"
                     VerticalOptions="Center"
                     Title="Seleccione"
-                    BackgroundColor="{AppThemeBinding Light=White, Dark=Gray}"
                     Margin="2"
                     SelectedItem="{Binding EmployeeName, Mode=TwoWay}"
                     TextColor="{AppThemeBinding Light=Black, Dark=White}"
@@ -107,28 +108,28 @@
             </Grid>
         </Frame>
         <HorizontalStackLayout HorizontalOptions="Center"
-                Spacing="10">
+                               Spacing="10">
             <Button Text="Editar Extra"
-                    Background="Green"
+                    Background="{StaticResource c-Success}"
                     TextColor="White"
                     Command="{Binding IUpdateExtra}"
-                    WidthRequest="120"
-                    HeightRequest="50">
+                    WidthRequest="110"
+                    HeightRequest="40">
                 <Button.Shadow>
-                    <Shadow Brush="Gray"
+                    <Shadow Brush="{AppThemeBinding Light={StaticResource Gray300}}"
                             Offset="5,5"
                             Radius="10"
                             Opacity="0.5"/>
                 </Button.Shadow>
             </Button>
             <Button Text="Cancelar"
-                    Background="Red"
+                    Background="{StaticResource c-Error}"
                     TextColor="White"
                     Command="{Binding IClosePage}"
-                    WidthRequest="120"
-                    HeightRequest="50">
+                    WidthRequest="110"
+                    HeightRequest="40">
                 <Button.Shadow>
-                    <Shadow Brush="Gray"
+                    <Shadow Brush="{AppThemeBinding Light={StaticResource Gray300}}"
                             Offset="5,5"
                             Radius="10"
                             Opacity="0.5"/>

@@ -5,6 +5,7 @@
              xmlns:Models="clr-namespace:HorasExtras.Models"
              x:Class="HorasExtras.Views.AddExtra"
              x:Name="AddExtraPage"
+             Padding="5"
              Title="Agregar Extra">
     <ContentPage.BindingContext>
         <ViewModels:AddExtraVM/>
@@ -12,15 +13,15 @@
 
     <VerticalStackLayout>
         <Frame
-            Margin="10,0,10,10"
+            Margin="10,10,10,10"
             HasShadow="True"
-            Background="gray"
-            >
+            BorderColor="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource Gray600}}"
+            Background="{AppThemeBinding Light=#ffffff, Dark={StaticResource Gray600}}">
             <Frame.Shadow>
-                      <Shadow Brush="Gray"
-                            Offset="5,5"
-                            Radius="10"
-                            Opacity="0.5"/>
+                <Shadow Brush="{AppThemeBinding Light={StaticResource Gray300}}"
+                        Offset="5,5"
+                        Radius="10"
+                        Opacity="0.5"/>
             </Frame.Shadow>
 
             <Grid Padding="10"
@@ -42,7 +43,6 @@
                     Grid.Column="1"
                     VerticalOptions="Center"
                     Title="Seleccione"
-                    BackgroundColor="{AppThemeBinding Light=White, Dark=Gray}"
                     Margin="2"
                     SelectedItem="{Binding EmployeeName}"
                     TextColor="{AppThemeBinding Light=Black, Dark=White}"
@@ -109,13 +109,13 @@
         </Frame>
 
         <Button Text="Agregar Extra"
-                Background="Green"
+                Background="{StaticResource c-Success}"
                 TextColor="White"
                 WidthRequest="120"
                 HeightRequest="50"
                 Command="{Binding IAddExtra}">
             <Button.Shadow>
-                <Shadow Brush="Gray"
+                <Shadow Brush="{AppThemeBinding Light={StaticResource Gray300}}"
                         Offset="5,5"
                         Radius="10"
                         Opacity="0.5"/>

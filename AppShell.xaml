@@ -7,13 +7,16 @@
     xmlns:Views="clr-namespace:HorasExtras.Views"
     Shell.FlyoutBehavior="Disabled"
     Background="AliceBlue"
-    Shell.TabBarForegroundColor="White"
+    Shell.TabBarForegroundColor="{AppThemeBinding Light={StaticResource Secondary}, Dark=White}"
     Shell.TabBarUnselectedColor="{StaticResource Secondary}"
     Shell.TabBarTitleColor="White"
     Shell.TabBarBackgroundColor="{StaticResource Primary}"
-    Shell.UnselectedColor="WhiteSmoke"
-    BackgroundColor="{StaticResource PrimaryDark}"
-    Title="Horas Extras">
+    BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
+    Title="Horas Extras"
+    TitleColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}"
+    >
+
+
 
     <TabBar>
         <ShellContent

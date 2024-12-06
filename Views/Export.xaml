@@ -5,7 +5,7 @@
              xmlns:Models="clr-namespace:HorasExtras.Models"
              x:Name="ExportPage"
              x:Class="HorasExtras.Views.Export"
-             Padding="2,5,2,2"
+             Padding="4"
              Title="Exportar Horas">
        <ContentPage.BindingContext>
               <ViewModels:Export/>
@@ -42,17 +42,17 @@
                      <HorizontalStackLayout
                             HorizontalOptions="CenterAndExpand"
                             Spacing="10">
-                            <Button Text="Generar Reporte"
+                            <Button Text="Buscar"
                                     HorizontalOptions="Center"
                                     WidthRequest="100"
                                     HeightRequest="30"
                                     Padding="5"
                                     Command="{Binding ISearch}"
-                                    Background="Orange"
+                                    Background="{StaticResource c-Warning}"
                                     TextColor="White">
 
                                    <Button.Shadow>
-                                          <Shadow Brush="Gray"
+                                          <Shadow Brush="{AppThemeBinding Light={StaticResource Gray600}}"
                                                   Offset="5,5"
                                                   Radius="10"
                                                   Opacity="0.5"/>
@@ -64,10 +64,10 @@
                                     HeightRequest="30"
                                     Command="{Binding IShare}"
                                     Padding="5"
-                                    Background="Green"
+                                    Background="{StaticResource c-Success}"
                                     TextColor="White">
                                    <Button.Shadow>
-                                          <Shadow Brush="Gray"
+                                          <Shadow Brush="{AppThemeBinding Light={StaticResource Gray600}}"
                                                   Offset="5,5"
                                                   Radius="10"
                                                   Opacity="0.5"/>
@@ -79,10 +79,10 @@
                                     HeightRequest="30"
                                     Padding="5"
                                     Command="{Binding IClean}"
-                                    Background="Red"
+                                    Background="{ StaticResource c-Error}"
                                     TextColor="White">
                                    <Button.Shadow>
-                                          <Shadow Brush="Gray"
+                                          <Shadow Brush="{AppThemeBinding Light={StaticResource Gray600}}"
                                                   Offset="5,5"
                                                   Radius="10"
                                                   Opacity="0.5"/>
@@ -126,15 +126,20 @@
                             Text="Salida"></Label>
               </Grid>
               <ScrollView Grid.Row="3"
-                          Padding="2"
+                          
                           VerticalOptions="StartAndExpand">
                      <CollectionView ItemsSource="{Binding ListExtras}">
                             <CollectionView.ItemTemplate>
                                    <DataTemplate>
-                                          <Frame Margin="2">
+                                          <Frame 
+                                                 Background="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray600}}"
+                                                 BorderColor="{AppThemeBinding Light={StaticResource Gray400Brush}, Dark={StaticResource Gray500}}"
+                                                 CornerRadius="10"
+                                                 Padding="0">
                                                  <Grid
-                                                        Padding="0"
-                                                        ColumnSpacing="10">
+                                                        
+                                                        Margin="10,10,10,10"
+                                                        ColumnSpacing="5">
                                                         <Grid.ColumnDefinitions>
                                                                <ColumnDefinition Width="*"/>
                                                                <ColumnDefinition Width="*"/>
